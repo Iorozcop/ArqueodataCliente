@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Usuarios</h1>
+        <p class="lead">Listado de usuarios:</p>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header">Usuarios</div>
+            <div class="card-body text-primary">
+            <h5 class="card-title">Usuarios registrados en Arqueodata</h5>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">nombre</th>
+                        <th scope="col">categoría</th>
+                        <th scope="col">email</th>
+                        <th scope="col">pass</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios">
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.categoria}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.pass}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+

@@ -1,0 +1,61 @@
+<div class="fondo">
+    
+    <div class="general container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <figure>
+                            <img src="../../assets/img/logoarqueodata.jpg" class="brand_logo" alt="Logo">
+                        </figure>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form (ngSubmit)="crear()">
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="icon fas fa-user"></i></span>
+                            </div>
+                            <input type="text" name="" class="form-control input_user" placeholder="nombre" [(ngModel)]="usuario.nombre" name="nombre">
+                        </div>
+                        <div class="form-group">
+
+                            <div class="btn-group btn-group-toggle categoria" data-toggle="buttons">
+                                <fieldset>
+                                    <label class="btn btn-rounded check" for="trabajador">
+                                        <input type="radio" class="checkInput" id="trabajador" value="trabajador" [(ngModel)]="usuario.categoria" name="categoria">Trabajador
+                                    </label>
+                                    
+                                    <label class="btn btn-rounded check" for="voluntario">
+                                        <input type="radio" class="checkInput" id="voluntario" value="voluntario" [(ngModel)]="usuario.categoria" name="categoria">Voluntario
+                                    </label>
+                                </fieldset>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="icon fas fa-user"></i></span>
+                            </div>
+                            <input type="email" name="email" class="form-control input_user"placeholder="email"[(ngModel)]="usuario.email">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="icon fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="pass" class="form-control input_pass" placeholder="contraseña" [(ngModel)]="usuario.pass">
+                        </div>
+
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" name="button" class="btn login_btn">Registrarse</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</div>
+
