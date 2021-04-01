@@ -2,15 +2,44 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header/header.component';
+
+import { FooterComponent } from './footer/footer/footer.component';
+
+import { UsuarioComponent } from './usuario/usuario.component';
+import { PiezaComponent } from './pieza/pieza.component';
+import { PiezasService } from './servicios/piezas.service';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegistroComponent } from './registro/registro.component'
+import { FormsModule } from '@angular/forms'
+
+const routes: Routes =[
+  {path:'', redirectTo: '/login', pathMatch: 'full'},
+  {path:'login', component: LoginComponent},
+  {path:'piezas', component: PiezaComponent},
+  {path:'usuarios', component: UsuarioComponent},
+  {path:'registro', component: RegistroComponent},
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    UsuarioComponent,
+    PiezaComponent,
+    LoginComponent,
+    RegistroComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [PiezasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

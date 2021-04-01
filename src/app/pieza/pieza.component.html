@@ -1,0 +1,31 @@
+
+<app-header></app-header>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Bienvenido</h1>
+    <p class="lead">Arqueodata es una aplicación para gestionar piezas arqueológicas</p>
+  </div>
+    <div class="row row-cols-3 row-cols-md-3 g-4 container">
+      <div class="col" *ngFor= "let pieza of piezas">
+        <div class="card h-100">
+          <img src="{{pieza.foto}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{pieza.yacimiento}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{pieza.campain}}</h6>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><small>{{pieza.fecha}}</small></li>
+              <li class="list-group-item">Material: {{pieza.material}}</li>
+              <li class="list-group-item">{{pieza.coordenadasX}}</li>
+              <li class="list-group-item">{{pieza.coordenadasY}}</li>
+              <li class="list-group-item">{{pieza.coordenadasZ}}</li>
+              <li class="list-group-item">Estado: {{pieza.estado}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
