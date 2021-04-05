@@ -13,7 +13,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistroComponent } from './registro/registro.component'
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { CrearPiezaComponent } from './crear-pieza/crear-pieza.component'
 
 const routes: Routes =[
   {path:'', redirectTo: '/login', pathMatch: 'full'},
@@ -21,6 +22,7 @@ const routes: Routes =[
   {path:'piezas', component: PiezaComponent},
   {path:'usuarios', component: UsuarioComponent},
   {path:'registro', component: RegistroComponent},
+  {path:'crear', component: CrearPiezaComponent},
 ];
 
 @NgModule({
@@ -32,6 +34,7 @@ const routes: Routes =[
     PiezaComponent,
     LoginComponent,
     RegistroComponent,
+    CrearPiezaComponent,
   ],
   imports: [
     BrowserModule,

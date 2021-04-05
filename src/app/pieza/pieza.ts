@@ -1,8 +1,8 @@
 export class Pieza {
     id?:string;
     fecha?:Date;
-    yacimiento?:string; //esta es FK
-    campain?:string;
+    //yacimiento?:string; //esta es FK
+    //campain?:string;
     material?:string;
     util?:string;
     coordenadasX?:number;
