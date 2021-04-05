@@ -14,18 +14,18 @@
                     <tr>
                         <th scope="col">id</th>
                         <th scope="col">nombre</th>
-                        <th scope="col">categoría</th>
                         <th scope="col">email</th>
                         <th scope="col">pass</th>
+                        <th scope="col">roles</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let usuario of usuarios">
                         <td>{{usuario.id}}</td>
-                        <td>{{usuario.nombre}}</td>
-                        <td>{{usuario.categoria}}</td>
+                        <td>{{usuario.username}}</td>
                         <td>{{usuario.email}}</td>
-                        <td>{{usuario.pass}}</td>
+                        <td>{{usuario.password}}</td>
+                        <td>{{usuario.roles}}</td>
                     </tr>
                 </tbody>
             </table>
