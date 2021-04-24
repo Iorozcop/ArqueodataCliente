@@ -1,8 +1,11 @@
+import { Yacimiento } from '../yacimiento/yacimiento';
+import { Campain } from '../campain/campain';
+
 export class Pieza {
-    id?:string;
+    id!:number;
     fecha?:Date;
-    //yacimiento?:string; //esta es FK
-    //campain?:string;
+    yacimiento?:Yacimiento; 
+    campain?:Campain;
     material?:string;
     util?:string;
     coordenadasX?:number;

@@ -3,6 +3,7 @@ import { Usuario } from '../usuario/usuario';
 import { UsuarioService } from '../servicios/usuario.service';
 import { Router } from '@angular/router';
 import { AutenticacionService } from '../servicios/autenticacion.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -21,17 +22,36 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(this.autService.isAuthenticated()){
+      Swal.fire('Ya has iniciado sesión');
+      this.router.navigate(['/piezas']);
+    }
   }
 
   //comprueba que existe en la BBDD
   login():void{
     if(this.usuario.username == null || this.usuario.password == null){
-      alert('Error al iniciar sesión, email o pass vacios'); 
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '¡Email o pass vacíos!'
+      })
       return;}
 
     this.autService.login(this.usuario).subscribe(response => {
       console.log(response);
-      this.router.navigate(['/piezas']);
+
+      this.autService.guardarUsuario(response.access_token);
+      this.autService.guardarToken(response.access_token);
+      this.router.navigate(['/inicio']);
+    }, err =>{
+      if(err.status == 400){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: '¡Usuario o clave incorrectas!'
+        })
+      }
     })
   }
 }

@@ -1,0 +1,9 @@
+.boton{
+    background-color: #eecd86 ;
+}
+
+.cabecera_card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

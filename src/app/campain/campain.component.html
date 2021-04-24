@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Campañas</h1>
+        <p class="lead">Listado de campañas:</p>
+
+        <div class="card border-primary mb-3">
+            <div class="card-header cabecera_card">Campañas
+                <div class="my-2 text-left">
+                    <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded boton" type="button" [routerLink]="['/piezas/crear/campain']">Crear </button>
+                </div>
+            </div>
+            <div class="card-body text-primary">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Campaña</th>
+                        <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">Eliminar</th>
+                        <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let campain of campains">
+                        <td>{{campain.id}}</td>
+                        <td>{{campain.campain}}</td>
+                        <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary" (click)="delete(campain)">Eliminar</button></td>
+                        <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary" [routerLink]= "['/piezas/crear/campain', campain.id]">Editar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
