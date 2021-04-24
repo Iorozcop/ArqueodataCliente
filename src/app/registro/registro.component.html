@@ -11,29 +11,14 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form (ngSubmit)="crear()">
+                    <form >
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="icon fas fa-user"></i></span>
                             </div>
-                            <input type="text" name="" class="form-control input_user" placeholder="nombre" [(ngModel)]="usuario.nombre" name="nombre">
+                            <input type="text" name="" class="form-control input_user" placeholder="nombre" [(ngModel)]="usuario.username" name="nombre">
                         </div>
-                        <div class="form-group">
 
-                            <div class="btn-group btn-group-toggle categoria" data-toggle="buttons">
-                                <fieldset>
-                                    <label class="btn btn-rounded check" for="trabajador">
-                                        <input type="radio" class="checkInput" id="trabajador" value="trabajador" [(ngModel)]="usuario.categoria" name="categoria">Trabajador
-                                    </label>
-                                    
-                                    <label class="btn btn-rounded check" for="voluntario">
-                                        <input type="radio" class="checkInput" id="voluntario" value="voluntario" [(ngModel)]="usuario.categoria" name="categoria">Voluntario
-                                    </label>
-                                </fieldset>
-                            </div>
-                            
-                        </div>
-                        
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="icon fas fa-user"></i></span>
@@ -44,11 +29,14 @@
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="icon fas fa-key"></i></span>
                             </div>
-                            <input type="password" name="pass" class="form-control input_pass" placeholder="contraseña" [(ngModel)]="usuario.pass">
+                            <input type="password" name="pass" class="form-control input_pass" placeholder="contraseña" [(ngModel)]="usuario.password">
                         </div>
-
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <button type="submit" name="button" class="btn login_btn">Registrarse</button>
+                            <button type="submit" name="button" class="btn login_btn" (click)="crear()"
+                            *ngIf="!usuario.id else elseBlock">Registrarse</button>
+                            <ng-template #elseBlock>
+                                <button type="submit" name="button" class="btn login_btn" (click)="update()">Editar</button>
+                            </ng-template>
                         </div>
                     </form>
                 </div>

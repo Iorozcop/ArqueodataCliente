@@ -1,0 +1,30 @@
+.general{
+    margin-bottom: 20px;
+}
+
+.block{
+    display: block;
+}
+
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 400px !important;
+    overflow-y: auto !important;
+}
+
+.abrirModal{
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.contenedor{
+    height: auto;
+    width: 100%;
+}

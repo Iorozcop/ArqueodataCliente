@@ -1,9 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
- .footer{
-     align-items: center;
-     background-color: cadetblue;
-     color: white;
-     display: flex;
-     height: 60px;
-     justify-content: center;
- }
+ 
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    /* margin-bottom: 60px; */
+}
+
+.footer{
+    align-items: center;
+    background-color:#eecd86;
+    color: white;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+}
+

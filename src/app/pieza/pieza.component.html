@@ -1,29 +1,31 @@
 
 <app-header></app-header>
 
+<detalle-pieza *ngIf= "piezaSeleccionada" [pieza]= "piezaSeleccionada"></detalle-pieza>
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container general">
-    <h1 class="display-4">Bienvenido</h1>
+    <h1 class="display-4">Listado de piezas</h1>
     <p class="lead">Arqueodata es una aplicación para gestionar piezas arqueológicas</p>
   
     <div class="row row-cols-3 row-cols-md-3 g-4 container">
       <div class="col" *ngFor= "let pieza of piezas">
         <div class="card h-100">
-          <img src="{{pieza.foto}}" class="card-img-top" alt="...">
+          <img *ngIf="pieza?.foto" src="http://localhost:8449/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
+          <img *ngIf="!pieza?.foto" src="http://localhost:8449/images/logoarqueodata.jpg" class="card-img-top" alt="sin foto">
           <div class="card-body">
-            <!-- <h5 class="card-title">{{pieza.yacimiento}}</h5> -->
-            <!-- <h6 class="card-subtitle mb-2 text-muted">{{pieza.campain}}</h6> -->
+            <!--la ! es para que no salte un error, le estamos diciendo que eso no puede ser nulo y que no se queje-->
+            <h5 class="card-title">{{pieza.yacimiento!.nombre}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{pieza.campain!.campain}}</h6>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><small>{{pieza.fecha}}</small></li>
-              <li class="list-group-item">Material: {{pieza.material}}</li>
-              <li class="list-group-item">Util: {{pieza.util}}</li>
-              <li class="list-group-item">Estado: {{pieza.estado}}</li>
-              <li class="list-group-item">Coordenadas:</li>
-              <ul>
-                <li class="list-group-item noborder"><small>X: {{pieza.coordenadasX}}</small></li>
-                <li class="list-group-item noborder"><small>Y: {{pieza.coordenadasY}}</small></li>
-                <li class="list-group-item noborder"><small>Z: {{pieza.coordenadasZ}}</small></li>
-              </ul>
+              <li class="list-group-item">Fecha hallazgo: <small>{{pieza.fecha}}</small></li>
+              <li class="list-group-item">Zona hallazgo: <small>{{pieza.zona}}</small></li>
+              <li class="list-group-item">Material: <small>{{pieza.material}}</small></li>
+              <li class="list-group-item">Util: <small>{{pieza.util}}</small></li>
+              <li class="list-group-item">Estado: <small>{{pieza.estado}}</small></li>
+              <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary eliminar_btn" (click)="delete(pieza)">eliminar</button>
+              <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary eliminar_btn" [routerLink]= "['/crear', pieza.id]">editar</button>
+              <button type="button" name="button" class="btn btn-success eliminar_btn" (click)="abrirModal(pieza)">Ver detalle</button>
             </ul>
           </div>
         </div>

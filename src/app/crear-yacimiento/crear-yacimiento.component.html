@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-4">Crear yacimiento</h1>
+    <p class="lead">Rellene el siguiente formulario para introducir un nuevo yacimiento en la base de datos</p>
+
+    <div class="col">
+        <div class="card h-100 general">
+        <form >
+            <!-- input nombre -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="nombre">Nombre</label>
+                <input type="text" id="nombre" class="form-control" name="nombre" [(ngModel)]="yacimiento.nombre"/>
+            </div>
+
+            <!-- input lugar  -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="lugar">Lugar</label>
+                <input type="text" id="lugar" class="form-control" name="lugar" [(ngModel)]="yacimiento.lugar"/>
+            </div>
+
+            <!-- input epoca  -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="epoca">Época</label>
+                <input type="text" id="epoca" class="form-control" name="epoca" [(ngModel)]="yacimiento.epoca"/>
+            </div>
+            
+            <!-- Submit button -->
+            <button type="submit" name="button" class="btn btn-primary btn-block mb-4" (click)="crear()"
+            *ngIf="!yacimiento.id else elseBlock">Crear</button>
+            <ng-template #elseBlock>
+                <button type="submit" name="button" class="btn btn-primary btn-block mb-4" (click)="update()">Editar</button>
+            </ng-template>
+                
+        </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+
+

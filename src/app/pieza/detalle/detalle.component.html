@@ -1,0 +1,52 @@
+
+<div *ngIf="modalService.modal" class="abrirModal">
+    <div class="modal block contenedor" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button (click)="cerrarModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card h-100 general">
+                        <div *ngIf="pieza" class="card h-100">
+                            <img *ngIf="pieza?.foto" src="http://localhost:8449/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
+                            <img *ngIf="!pieza?.foto" src="http://localhost:8449/images/logoarqueodata.jpg" class="card-img-top" alt="sin foto">
+                            <div class="card-body">
+                                <!--la ! es para que no salte un error, le estamos diciendo que eso no puede ser nulo y que no se queje-->
+                                <h5 class="card-title">{{pieza.yacimiento!.nombre}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{pieza.campain!.campain}}</h6>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Fecha hallazgo: <small>{{pieza.fecha}}</small></li>
+                                    <li class="list-group-item">Zona hallazgo: <small>{{pieza.zona}}</small></li>
+                                    <li class="list-group-item">Material: <small>{{pieza.material}}</small></li>
+                                    <li class="list-group-item">Util: <small>{{pieza.util}}</small></li>
+                                    <li class="list-group-item">Estado: <small>{{pieza.estado}}</small></li>
+                                    <li class="list-group-item">Coordenadas:</li>
+                                    <ul>
+                                        <li class="list-group-item noborder"><small>X: {{pieza.coordenadasX}}</small></li>
+                                        <li class="list-group-item noborder"><small>Y: {{pieza.coordenadasY}}</small></li>
+                                        <li class="list-group-item noborder"><small>Z: {{pieza.coordenadasZ}}</small></li>
+                                    </ul>
+                                </ul>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <label for="formFileLg" class="form-label">Buscar foto</label>
+                                        <input (change)="seleccionarFoto($event)" class="form-control form-control-lg" id="formFileLg" type="file">
+                                    </div>
+                                </div>
+                                <div class="input-group-append">
+                                    <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary" type="button" id="formFileLgAddon">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

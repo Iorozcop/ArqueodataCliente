@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-4">Crear campaña</h1>
+    <p class="lead">Rellene el siguiente formulario para introducir una nueva campaña en la base de datos</p>
+
+    <div class="col">
+        <div class="card h-100 general">
+        <form>
+
+            <!-- input nombre  -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="nombre">Campaña</label>
+                <input type="number" id="nombre" class="form-control" name="nombre" [(ngModel)]="campain.campain"/>
+            </div>
+            
+            <!-- Submit button -->
+            <button type="submit" name="button" class="btn btn-primary btn-block mb-4" (click)="crear()"
+            *ngIf="!campain.id else elseBlock">Crear</button>
+            <ng-template #elseBlock>
+                <button type="submit" name="button" class="btn btn-primary login_btn" (click)="update()">Editar</button>
+            </ng-template>    
+        </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>
+
+
+
+
