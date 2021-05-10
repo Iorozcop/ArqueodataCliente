@@ -28,26 +28,39 @@ import { YacimientoService } from './servicios/yacimiento.service';
 import { AutenticacionService } from './servicios/autenticacion.service';
 import { InicioComponent } from './inicio/inicio.component';
 import { DetalleComponent } from './pieza/detalle/detalle.component';
+import { FormComponent } from './pieza/busqueda/form/form.component';
 
+import localeES from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+import { PaginadorComponent } from './paginador/paginador.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+registerLocaleData(localeES,'es');
 
 
 const routes: Routes =[
   {path:'', redirectTo: '/login', pathMatch: 'full'},
+  // {path:'notfound', component: NotFoundComponent},
   {path:'inicio', component: InicioComponent, canActivate:[AuthGuard]},
   {path:'login', component: LoginComponent},
   //canActivate:[AuthGuard] comprueba que esté logueado antes de redirigir a la ruta
   {path:'piezas', component: PiezaComponent, canActivate:[AuthGuard]},
+  {path:'piezas/page/:page', component: PiezaComponent, canActivate:[AuthGuard]},
   {path:'usuarios', component: UsuarioComponent, canActivate:[AuthGuard]},
+  {path:'usuarios/page/:page', component: UsuarioComponent, canActivate:[AuthGuard]},
   {path:'registro', component: RegistroComponent},
   {path:'registro/:id', component: RegistroComponent, canActivate:[AuthGuard]},
   {path:'crear', component: CrearPiezaComponent, canActivate:[AuthGuard]},
   {path:'crear/:id', component: CrearPiezaComponent, canActivate:[AuthGuard]},
   {path:'piezas/yacimientos', component: YacimientoComponent, canActivate:[AuthGuard]},
+  {path:'piezas/yacimientos/page/:page', component: YacimientoComponent, canActivate:[AuthGuard]},
   {path:'piezas/campains', component: CampainComponent, canActivate:[AuthGuard]},
+  {path:'piezas/campains/page/:page', component: CampainComponent, canActivate:[AuthGuard]},
   {path:'piezas/crear/yacimiento', component: CrearYacimientoComponent, canActivate:[AuthGuard]},
   {path:'piezas/crear/yacimiento/:id', component: CrearYacimientoComponent, canActivate:[AuthGuard]},
   {path:'piezas/crear/campain', component: CrearCampainComponent, canActivate:[AuthGuard]},
   {path:'piezas/crear/campain/:id', component: CrearCampainComponent, canActivate:[AuthGuard]},
+  {path:'piezas/search', component: FormComponent, canActivate:[AuthGuard]},
+  {path:'**', component: NotFoundComponent}
 ];
 
 @NgModule({
@@ -66,6 +79,9 @@ const routes: Routes =[
     CrearCampainComponent,
     InicioComponent,
     DetalleComponent,
+    FormComponent,
+    PaginadorComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

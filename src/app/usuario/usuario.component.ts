@@ -3,6 +3,7 @@ import { Usuario } from './usuario';
 import { UsuarioService } from '../servicios/usuario.service';
 import Swal from 'sweetalert2'
 import { AutenticacionService } from '../servicios/autenticacion.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-usuario',
@@ -11,16 +12,31 @@ import { AutenticacionService } from '../servicios/autenticacion.service';
 })
 export class UsuarioComponent implements OnInit {
 
-  usuarios: Usuario[]=[];
+  usuariosList: Usuario[]=[];
+  paginador: any;
+  entidad: string='usuarios';
 
   constructor(private usuarioService: UsuarioService,
-              public authService: AutenticacionService) { }
+              public authService: AutenticacionService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+  
+    this.activatedRoute.paramMap.subscribe(params=>{
+      //poniendo el + convertimos un string a number
+      let page:number = +params.get('page');
+      
+      if(!page){
+        page = 0;
+      }
 
-    this.usuarioService.getUsuarios().subscribe(
-      usuarios => this.usuarios = usuarios
-    );
+      this.usuarioService.getUsuarios(page).subscribe(
+      response => {
+        this.usuariosList = response.content as Usuario[];
+        this.paginador = response;
+      });
+    })
+    
   }
 
   delete(usuario:Usuario):void{
@@ -38,7 +54,7 @@ export class UsuarioComponent implements OnInit {
       if (result.isConfirmed) {
         this.usuarioService.delete(usuario.id).subscribe(
           response => {
-            this.usuarios = this.usuarios.filter(user => user !== usuario)
+            this.usuariosList = this.usuariosList.filter(user => user !== usuario)
             Swal.fire(
             '¡Eliminado!',
             'El usuario ha sido eliminado',

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Usuario } from '../usuario/usuario';
 import { Router } from '@angular/router';
-import { map, catchError} from 'rxjs/operators'
+import { catchError } from 'rxjs/operators'
 import Swal from 'sweetalert2'
 
 @Injectable({
@@ -15,10 +15,9 @@ export class UsuarioService {
   constructor(private http:HttpClient,
               private router: Router) { }
 
-
   //trae todos los usuarios registrados
-  getUsuarios(): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.urlEndPoint);
+  getUsuarios(page:number): Observable<any> {
+    return this.http.get<any>(this.urlEndPoint + '/page/' + page);
   }
 
   //crea un nuevo usuario
@@ -63,6 +62,9 @@ export class UsuarioService {
   update(usuario: Usuario) :Observable<any>{
     return this.http.put<any>(`${this.urlEndPoint}/${usuario.id}`, usuario).pipe(
       catchError(e => {
+        if(e.status == 400){
+          return throwError(e);
+        }
         console.log(e.error.mensaje);
         Swal.fire({
           icon: 'error',

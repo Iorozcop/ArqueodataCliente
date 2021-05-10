@@ -7,11 +7,11 @@
       <div class="collapse navbar-collapse menu" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/piezas">Listado de piezas</a>
+            <a class="nav-link" routerLink="/piezas">Piezas</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/crear">Insertar pieza</a>
-          </li>
+          </li> -->
           <li *ngIf="authService.hasRole('ROLE_ADMIN')" class="nav-item">
             <a class="nav-link" routerLink="/usuarios">Usuarios</a>
           </li>

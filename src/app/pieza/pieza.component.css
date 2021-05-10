@@ -1,5 +1,24 @@
-.general{
-    margin-bottom: 20px;
+.fondo {
+    position:relative;
+    background-image: url(../../assets/img/fondoGeneral.jpg)!important;
+    background-repeat: repeat;
+    height: auto;
+    background-position: 0 0;
+}
+.general_container{
+    position: relative;
+    padding: 20px;
+}
+
+.piezas_content{
+    padding: 30px;
+    background-color: white;
+}
+
+.botones{
+    background-color:#eecd86 ;
+    color:black;
+    margin: 5px;
 }
 
 .noborder{
@@ -7,6 +26,20 @@
     padding: 0px 0px 2px 0px;
 }
 
-.eliminar_btn{
-    margin-top: 10px;
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card_container{
+    margin-bottom: 20px;
+}
+
+.buttonGroup{
+    display: flex;
+    justify-content: space-around;
+}
+
+.margen_btn{
+    margin:20px 0px 0px 0px;
 }

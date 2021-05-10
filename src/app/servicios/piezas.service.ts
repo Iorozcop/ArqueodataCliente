@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Pieza } from '../pieza/pieza';
 import { Observable, throwError } from 'rxjs';
-import { HttpClient} from '@angular/common/http'
+import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +30,13 @@ export class PiezasService {
     );
   }
 
+
+  //trae todas las piezas registradas con paginación
+  getPiezasP(page:number): Observable<any> {
+    return this.http.get<any>(this.urlEndPoint + '/page/' + page);
+  }
+
+   //trae todas las piezas registradas
   getPiezas(): Observable<Pieza[]> {
     return this.http.get<Pieza[]>(this.urlEndPoint);
   }
@@ -59,6 +65,9 @@ export class PiezasService {
     update(pieza: Pieza) :Observable<any>{
       return this.http.put<any>(`${this.urlEndPoint}/${pieza.id}`, pieza).pipe(
         catchError(e => {
+          if(e.status == 400){
+            return throwError(e);
+          }
           console.log(e.error.mensaje);
           Swal.fire({
             icon: 'error',
@@ -93,6 +102,28 @@ export class PiezasService {
         return throwError(e);
       })
     )
+  }
+
+  //busca piezas
+  // buscaPiezas(pieza: Pieza): Observable<any[]>{
+  //   return this.http.post<any[]>(`${this.urlEndPoint}/search`,pieza);
+  // }
+
+  buscaPiezas(pieza: Pieza): Observable<any[]>{
+    return this.http.post<any[]>(`${this.urlEndPoint}/search`,pieza).pipe(
+      catchError(e => {
+        if(e.status == 404){
+          return throwError(e);
+        }
+        console.log(e.error.mensaje);
+        Swal.fire({
+          icon: 'error',
+          title: e.error.mensaje,
+          text: 'No existen piezas que cumplan estos criterios de búsqueda'
+        })
+        return throwError(e);
+      })
+    );
   }
 
 }

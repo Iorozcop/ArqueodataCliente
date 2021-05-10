@@ -4,6 +4,7 @@ import { PiezasService } from '../servicios/piezas.service';
 import Swal from 'sweetalert2'
 import { AutenticacionService } from '../servicios/autenticacion.service';
 import { ModalService } from './detalle/modal.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -15,17 +16,35 @@ export class PiezaComponent implements OnInit {
 
   piezas: Pieza[] = [];
   piezaSeleccionada!: Pieza;
+  paginador: any;
+  entidad: string='piezas';
   
   constructor(private piezaService: PiezasService,
               public authService: AutenticacionService,
-              private modalService: ModalService
+              private modalService: ModalService,
+              private activatedRoute: ActivatedRoute
               ) { }
 
   ngOnInit(): void {
+
+    this.activatedRoute.paramMap.subscribe(params=>{
+      //poniendo el + convertimos un string a number
+      let page:number = +params.get('page');
+      
+      if(!page){
+        page = 0;
+      }
+
+      this.piezaService.getPiezasP(page).subscribe(
+      response => {
+        this.piezas = response.content as Pieza[];
+        this.paginador = response;
+      });
+    })
     
-    this.piezaService.getPiezas().subscribe(
-      piezas => this.piezas = piezas
-    );
+    // this.piezaService.getPiezas().subscribe(
+    //   piezas => this.piezas = piezas
+    // );
 
     //para actualizar la foto si se cambia en el modal.
     this.modalService.notificarUpload.subscribe(pieza => {

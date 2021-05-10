@@ -1,0 +1,11 @@
+.content_form{
+    padding: 10px;
+}
+
+.botones{
+    display: flex;
+    justify-content: flex-end;
+}
+.btn_form{
+    margin: 5px
+}

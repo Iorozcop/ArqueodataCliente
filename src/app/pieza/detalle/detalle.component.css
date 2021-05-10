@@ -10,8 +10,13 @@
     overflow-y: initial !important
 }
 .modal-body{
-    height: 400px !important;
+    height: 500px !important;
     overflow-y: auto !important;
+}
+
+.noborder{
+    border:none !important;
+    padding: 0px 0px 2px 0px;
 }
 
 .abrirModal{

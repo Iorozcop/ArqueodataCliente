@@ -1,6 +1,5 @@
 .fondo {
     position:relative;
-    /* opacity: 50%; */
     background-image: url(../../assets/img/fondoLogin.jpg)!important;
     background-repeat: repeat;
     background-size: cover;
@@ -9,8 +8,8 @@
 }
 
 .user_card {
-    height: 390px;
-    width: 350px;
+    height: auto;
+    width: 410px;
     margin-top: auto;
     margin-bottom: auto;
     background: #eecd86;
@@ -18,7 +17,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -42,7 +41,11 @@
     border: 2px solid white;
 }
 .form_container {
-    margin-top: 80px;
+    margin-top: 90px;
+    width: 100%;
+}
+.form{
+    width: 100%;
 }
 .login_btn {
     width: 100%;
@@ -93,4 +96,8 @@
 
 .checkInput{
     margin-right: 5px;
+}
+
+.listError{
+    margin: 0px 10px 0px 10px;
 }
