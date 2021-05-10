@@ -1,3 +1,17 @@
 .general{
+    margin-bottom: 20px;
     padding: 20px;
+}
+
+input:required {
+    outline: 1px solid tomato;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.boton{
+    margin-right: 5px;
 }

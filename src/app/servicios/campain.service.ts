@@ -19,6 +19,11 @@ export class CampainService {
                 private router: Router
                 ) { }
 
+  //trae todas las campañas registradas con paginación
+  getCampainsP(page:number): Observable<any> {
+    return this.http.get<any>(this.urlEndPoint + '/page/' + page);
+  }
+
   //trae todas las campañas registradas
   getCampains(): Observable<Campain[]> {
     return this.http.get<Campain[]>(this.urlEndPoint);
@@ -28,6 +33,9 @@ export class CampainService {
   create(campain:Campain) :Observable<Campain>{
     return this.http.post<Campain>(this.urlEndPoint, campain).pipe(
       catchError(e => {
+        if(e.status == 400){
+          return throwError(e);
+        }
         console.log(e.error.mensaje);
         this.router.navigate(['/piezas/campains']);
         Swal.fire({
@@ -63,6 +71,9 @@ export class CampainService {
   update(campain: Campain) :Observable<any>{
     return this.http.put<any>(`${this.urlEndPoint}/${campain.id}`, campain).pipe(
       catchError(e => {
+        if(e.status == 400){
+          return throwError(e);
+        }
         console.log(e.error.mensaje);
         Swal.fire({
           icon: 'error',

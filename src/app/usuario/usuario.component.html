@@ -5,32 +5,29 @@
         <h1 class="display-4">Usuarios</h1>
         <p class="lead">Listado de usuarios:</p>
 
-        <div class="card border-primary mb-3">
+        <div class="card border-primary mb-3 table-responsive">
             <div class="card-header">Usuarios</div>
             <div class="card-body text-primary">
-            <h5 class="card-title">Usuarios registrados en Arqueodata</h5>
-
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">nombre</th>
                         <th scope="col">email</th>
-                        <th scope="col">rol</th>
+
                         <th scope="col">eliminar</th>
                         <th scope="col">editar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let usuario of usuarios">
+                    <tr *ngFor="let usuario of usuariosList">
                         <td>{{usuario.username}}</td>
                         <td>{{usuario.email}}</td>
-                        <td *ngFor="let rol of usuario.roles">{{rol}}</td>
                         <td><button type="button" name="button" class="btn btn-primary" (click)="delete(usuario)">eliminar</button></td>
                         <td><button type="button" name="button" class="btn btn-primary" [routerLink]= "['/registro', usuario.id]">editar</button></td>
                     </tr>
                 </tbody>
             </table>
-
+            <paginador-nav *ngIf="paginador" [entidad]= 'entidad' [paginador]= 'paginador'></paginador-nav>
             </div>
         </div>
     

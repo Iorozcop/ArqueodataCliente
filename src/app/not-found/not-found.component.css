@@ -1,0 +1,29 @@
+.fondo {
+    opacity: 70%;
+    position:relative;
+    background-image: url(../../assets/img/fondoLogin.jpg)!important;
+    background-repeat: repeat;
+    background-size: cover;
+    display: flex;
+    height: 940px;
+    background-position: 0 0;
+}
+
+.general{
+    width: auto;
+    height: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #eecd86;
+    border-radius: 5%;
+    text-align: center;
+}
+
+h1{
+    margin-bottom: 10px;
+}
+
+.logo{
+    width: 400px;
+    padding: 10px;
+}

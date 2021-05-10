@@ -17,9 +17,12 @@ import Swal from 'sweetalert2';
 export class CrearPiezaComponent implements OnInit {
 
   public pieza:Pieza= new Pieza();
+  public errores: string[];
   campains: Campain[] = [];
   yacimientos: Yacimiento[] = [];
 
+  public fotoSeleccionada!: File | null;
+  
   constructor(private piezaService: PiezasService,
               private router:Router,
               private campainService: CampainService,
@@ -32,6 +35,8 @@ export class CrearPiezaComponent implements OnInit {
     this.cargarPiezas();
   }
 
+  // carga las piezas existentes en la BBDD
+
   cargarPiezas():void{
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
@@ -43,11 +48,22 @@ export class CrearPiezaComponent implements OnInit {
     })
   }
 
+  // crea una pieza
+
   crear(): void{
     this.piezaService.create(this.pieza).subscribe(
-      response => this.router.navigate(['/piezas'])
+      response => {
+        this.router.navigate(['/piezas'])
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error("codigo del error: " + err.status);
+        console.error(err.console.error.errors);
+      }
     )
   }
+
+  // edita una pieza
 
   update():void{
     this.piezaService.update(this.pieza).subscribe(
@@ -58,8 +74,57 @@ export class CrearPiezaComponent implements OnInit {
           `Pieza editada con éxito`,
           'success'
         )
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error("codigo del error: " + err.status);
+        console.error(err.console.error.errors);
       }
     )
+  }
+
+  // selecciona una foto para subirla posteriormente
+
+  seleccionarFoto(event:any) {
+    this.fotoSeleccionada = event.target.files[0];
+    console.log(this.fotoSeleccionada);
+    if (this.fotoSeleccionada.type.indexOf('image') < 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'El archivo debe ser del tipo imagen',
+        text: 'Error'
+      })
+      this.fotoSeleccionada = null;
+    }
+  }
+
+  // sube una foto
+
+  subirFoto(){
+    if (!this.fotoSeleccionada) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Debe seleccionar una foto',
+        text: 'Error'
+      })
+    } else {
+      this.piezaService.subirFoto(this.fotoSeleccionada, this.pieza.id)
+        .subscribe(pieza => {
+          this.pieza = pieza;
+        });
+    }
+  }
+
+  // compara yacimientos
+
+  compararYacimiento(y1:Yacimiento, y2:Yacimiento):boolean{
+    return y1 == null || y2 == null ? false : y1.id === y2.id;
+  }
+
+  // compara campañas
+  
+  compararCampain(c1:Campain, c2:Campain):boolean{
+    return c1 == null || c2 == null ? false : c1.id === c2.id;
   }
 
 }

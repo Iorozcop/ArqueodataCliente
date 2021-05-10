@@ -20,34 +20,34 @@ export class DetalleComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  seleccionarFoto(event:any) {
-    this.fotoSeleccionada = event.target.files[0];
-    console.log(this.fotoSeleccionada);
-    if (this.fotoSeleccionada!.type.indexOf('image') < 0) {
-      Swal.fire({
-        icon: 'error',
-        title: 'El archivo debe ser del tipo imagen',
-        text: 'Error'
-      })
-      this.fotoSeleccionada = null;
-    }
-  }
+  // seleccionarFoto(event:any) {
+  //   this.fotoSeleccionada = event.target.files[0];
+  //   console.log(this.fotoSeleccionada);
+  //   if (this.fotoSeleccionada.type.indexOf('image') < 0) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'El archivo debe ser del tipo imagen',
+  //       text: 'Error'
+  //     })
+  //     this.fotoSeleccionada = null;
+  //   }
+  // }
 
-  subirFoto(){
-    if (!this.fotoSeleccionada) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Debe seleccionar una foto',
-        text: 'Error'
-      })
-    } else {
-      this.piezaService.subirFoto(this.fotoSeleccionada, this.pieza.id)
-        .subscribe(pieza => {
-          this.pieza = pieza;
-        });
-        this.modalService.notificarUpload.emit(this.pieza);
-    }
-  }
+  // subirFoto(){
+  //   if (!this.fotoSeleccionada) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Debe seleccionar una foto',
+  //       text: 'Error'
+  //     })
+  //   } else {
+  //     this.piezaService.subirFoto(this.fotoSeleccionada, this.pieza.id)
+  //       .subscribe(pieza => {
+  //         this.pieza = pieza;
+  //       });
+  //       this.modalService.notificarUpload.emit(this.pieza);
+  //   }
+  // }
 
   cerrarModal() {
     this.modalService.cerrarModal();

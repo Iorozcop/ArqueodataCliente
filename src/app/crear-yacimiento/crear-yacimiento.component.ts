@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
 })
 export class CrearYacimientoComponent implements OnInit {
 
-  public yacimiento:Yacimiento= new Yacimiento(); 
+  public yacimiento:Yacimiento= new Yacimiento();
+  public errores: string[]; 
 
   constructor(private yacimientoService: YacimientoService,
               private router:Router,
@@ -34,7 +35,13 @@ export class CrearYacimientoComponent implements OnInit {
 
   public crear():void{
     this.yacimientoService.create(this.yacimiento).subscribe(
-      response => this.router.navigate(['/piezas/yacimientos'])
+      response => {this.router.navigate(['/piezas/yacimientos'])
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error("codigo del error: " + err.status);
+        console.error(err.console.error.errors);
+      }
     )
   }
 
@@ -47,6 +54,11 @@ export class CrearYacimientoComponent implements OnInit {
           `Yacimiento editado con éxito`,
           'success'
         )
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error("codigo del error: " + err.status);
+        console.error(err.console.error.errors);
       }
     )
   }

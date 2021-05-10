@@ -12,7 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class RegistroComponent implements OnInit {
 
+  //se ponen public porque sino no podemos acceder desde la vista
   public usuario: Usuario = new Usuario();
+  public errores: string[];
 
   constructor(private usuarioService :UsuarioService,
               private router:Router,
@@ -42,6 +44,11 @@ export class RegistroComponent implements OnInit {
           `Usuario ${json.usuario.username} creado con éxito`,
           'success'
         )
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error("codigo del error: " + err.status);
+        console.error(err.console.error.errors);
       }
     )
   }
@@ -55,6 +62,11 @@ export class RegistroComponent implements OnInit {
           `Usuario editado con éxito`,
           'success'
         )
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+        console.error("codigo del error: " + err.status);
+        console.error(err.console.error.errors);
       }
     )
   }

@@ -33,10 +33,18 @@ export class YacimientoService {
     return this.http.get<Yacimiento[]>(this.urlEndPoint);
   }
 
+  //trae todos los yacimientos registrados con paginación
+  getYacimientosP(page:number): Observable<any> {
+    return this.http.get<any>(this.urlEndPoint + '/page/' + page);
+  }
+
   //crea un nuevo yacimiento
   create(yacimiento:Yacimiento) :Observable<Yacimiento>{
     return this.http.post<Yacimiento>(this.urlEndPoint, yacimiento, {headers:this.agregarAuthHeader()}).pipe(
       catchError(e => {
+        if(e.status == 400){
+          return throwError(e);
+        }
         console.log(e.error.mensaje);
         this.router.navigate(['/piezas']);
         Swal.fire({
@@ -72,6 +80,9 @@ export class YacimientoService {
   update(yacimiento: Yacimiento) :Observable<any>{
     return this.http.put<any>(`${this.urlEndPoint}/${yacimiento.id}`, yacimiento).pipe(
       catchError(e => {
+        if(e.status == 400){
+          return throwError(e);
+        }
         console.log(e.error.mensaje);
         Swal.fire({
           icon: 'error',

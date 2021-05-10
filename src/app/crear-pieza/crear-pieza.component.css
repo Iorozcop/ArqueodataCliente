@@ -5,3 +5,29 @@
 .coordenada{
     margin-bottom: 10px;
 }
+
+input:required {
+    outline: 1px solid tomato;
+}
+
+select:required{
+    outline: 1px solid tomato;
+}
+
+.subir_foto{
+    align-items: flex-end;
+    display: flex;
+}
+
+.boton_cargar{
+    width: 100%;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.boton{
+    margin-right: 5px;
+}

@@ -7,20 +7,33 @@
 
     <div class="col">
         <div class="card h-100 general">
-        <form>
+        <form #registro="ngForm">
 
-            <!-- input nombre  -->
+            <!-- input año campaña  -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="nombre">Campaña</label>
-                <input type="number" id="nombre" class="form-control" name="nombre" [(ngModel)]="campain.campain"/>
+                <label class="form-label" for="nombre">Campaña*</label>
+                <input type="number" id="nombre" class="form-control" name="nombre" [(ngModel)]="campain.campain" required number #year="ngModel"/>
+                <div class="alert alert-danger" *ngIf="year.invalid && (year.dirty || year.touched)">
+                    <div *ngIf="year.errors!.required">    
+                        El campo es requerido y deben ser números
+                    </div>
+                </div>
             </div>
             
             <!-- Submit button -->
-            <button type="submit" name="button" class="btn btn-primary btn-block mb-4" (click)="crear()"
-            *ngIf="!campain.id else elseBlock">Crear</button>
-            <ng-template #elseBlock>
-                <button type="submit" name="button" class="btn btn-primary login_btn" (click)="update()">Editar</button>
-            </ng-template>    
+            <div class="buttonContainer">
+                <div>
+                    <button type="submit" name="button" class="btn btn-primary btn-block boton" (click)="crear()"
+                    *ngIf="!campain.id else elseBlock" [disabled]="!registro.form.valid">Crear</button>
+                    <ng-template #elseBlock>
+                        <button type="submit" name="button" class="btn btn-primary login_btn boton" (click)="update()">Editar</button>
+                    </ng-template> 
+                    <!--botón atrás-->
+                    <button name="button" class="btn btn-primary login_btn boton" [routerLink]= "['/piezas/campains']">Atrás</button>
+                </div>
+                
+                <p>* campos obligatorios</p>
+            </div>   
         </form>
         </div>
         </div>

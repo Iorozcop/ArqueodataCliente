@@ -1,5 +1,5 @@
 <div class="fondo">
-    
+ 
     <div class="general container h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
@@ -11,26 +11,31 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form >
+                    <form class="form" #registro="ngForm">
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="icon fas fa-user"></i></span>
                             </div>
-                            <input type="text" name="" class="form-control input_user" placeholder="nombre" [(ngModel)]="usuario.username" name="nombre">
+                            <input type="text" name="" class="form-control input_user" placeholder="nombre" [(ngModel)]="usuario.username" name="nombre" required> 
                         </div>
 
                         <div class="input-group mb-3">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="icon fas fa-user"></i></span>
                             </div>
-                            <input type="email" name="email" class="form-control input_user"placeholder="email"[(ngModel)]="usuario.email">
+                            <input type="email" name="email" class="form-control input_user" placeholder="email"[(ngModel)]="usuario.email" required>
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="icon fas fa-key"></i></span>
                             </div>
-                            <input type="password" name="pass" class="form-control input_pass" placeholder="contraseña" [(ngModel)]="usuario.password">
+                            <input type="password" name="pass" class="form-control input_pass" placeholder="contraseña" [(ngModel)]="usuario.password" required>
                         </div>
+                        <ul class="alert alert-danger" *ngIf="errores?.length > 0" >
+                            <li class="listError" *ngFor="let err of errores">
+                                {{ err }}
+                            </li>
+                        </ul>
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <button type="submit" name="button" class="btn login_btn" (click)="crear()"
                             *ngIf="!usuario.id else elseBlock">Registrarse</button>
