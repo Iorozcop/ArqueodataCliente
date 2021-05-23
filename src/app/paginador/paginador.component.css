@@ -1,0 +1,13 @@
+.ul_paginacion{
+    margin-bottom: 5px;;
+}
+
+.pag{
+    background-color: white !important;
+    color: black;
+}
+
+.pag_selec{
+    background-color: #cf9c4e  !important;
+    border-color: #a77730 !important;
+}

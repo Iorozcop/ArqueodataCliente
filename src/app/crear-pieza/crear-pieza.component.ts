@@ -20,6 +20,7 @@ export class CrearPiezaComponent implements OnInit {
   public errores: string[];
   campains: Campain[] = [];
   yacimientos: Yacimiento[] = [];
+  isSelected:boolean= false;
 
   public fotoSeleccionada!: File | null;
   
@@ -57,8 +58,8 @@ export class CrearPiezaComponent implements OnInit {
       },
       err => {
         this.errores = err.error.errors as string[];
-        console.error("codigo del error: " + err.status);
-        console.error(err.console.error.errors);
+        console.log("codigo del error: " + err.status);
+        console.log(err.console.error.errors);
       }
     )
   }
@@ -66,28 +67,36 @@ export class CrearPiezaComponent implements OnInit {
   // edita una pieza
 
   update():void{
-    this.piezaService.update(this.pieza).subscribe(
-      pieza => {
-        this.router.navigate(['/piezas'])
-        Swal.fire(
-          'Pieza editada',
-          `Pieza editada con éxito`,
-          'success'
-        )
-      },
-      err => {
-        this.errores = err.error.errors as string[];
-        console.error("codigo del error: " + err.status);
-        console.error(err.console.error.errors);
-      }
-    )
+    if(this.isSelected){
+      Swal.fire({
+        icon: 'error',
+        title: 'Debe subir la imagen primero',
+        text: 'Error'
+      })
+    }else{
+      this.piezaService.update(this.pieza).subscribe(
+        pieza => {
+          this.router.navigate(['/piezas'])
+          Swal.fire(
+            'Pieza editada',
+            `Pieza editada con éxito`,
+            'success'
+          )
+        },
+        err => {
+          this.errores = err.error.errors as string[];
+          console.log("codigo del error: " + err.status);
+          console.log(err.console.error.errors);
+        }
+      )
+    }
   }
 
   // selecciona una foto para subirla posteriormente
 
   seleccionarFoto(event:any) {
     this.fotoSeleccionada = event.target.files[0];
-    console.log(this.fotoSeleccionada);
+    this.isSelected = true;
     if (this.fotoSeleccionada.type.indexOf('image') < 0) {
       Swal.fire({
         icon: 'error',
@@ -108,6 +117,7 @@ export class CrearPiezaComponent implements OnInit {
         text: 'Error'
       })
     } else {
+      this.isSelected = false;
       this.piezaService.subirFoto(this.fotoSeleccionada, this.pieza.id)
         .subscribe(pieza => {
           this.pieza = pieza;

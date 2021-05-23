@@ -1,9 +1,112 @@
-.boton{
-    background-color: #eecd86 ;
+.fondo {
+    position:relative;
+    background-image: url(../../assets/img/fondoGeneral.jpg)!important;
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    min-height: 100vh;
+    background-position: 0 0;
 }
 
-.cabecera_card{
+.general_container{
+    position: relative;
+    padding: 30px 40px; 
+}
+
+.container_yacimientos_general{
+    background-color:#fffaf0;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
+    padding: 20px;
+    text-align: center;
+}
+
+.img_header{
+    width: 80%;
+}
+
+.container_yacimientos{
+    box-shadow: 0px 0px 5px 1px #cccccc ;
+    margin:30px;
+}
+
+.card_body{
+    padding-top: 50px;
+}
+
+.card_group{
+    display: flex;
+    justify-content: center;
+}
+
+.card_yacimiento{
+    margin: 12px;
+    background-color: #fffaf0;
+    width: 250px;
+    height: 250px;
+    color:black;
+}
+
+.yacimientos_group_container{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container_paginador{
+    display: flex;
+    justify-content: center;
+}
+
+.button_group{
+    margin-bottom: 10px;
+}
+
+.button_card{
+    background-color: #eecd86;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
+    margin:5px;
+}
+
+.button{
+    background-color: #eecd86;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
+}
+
+.header_card_group{
+    background-color:#cf9c4e;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.body_card{
+    background-color:#fcf2dc;
+    padding: 30px 0px;
+}
+
+/* media table */
+
+@media (max-width: 768px){
+    .img_header{
+        width: 100%;
+    }
+
+    .general_container{
+        padding: 30px 20px; 
+    }
+
+    .container_yacimientos{
+        margin:15px;
+    }
+}
+
+/* media móvil */
+
+@media (max-width: 360px){
+    
+    .container_yacimientos{
+        margin:0px;
+    } 
 }

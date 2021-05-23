@@ -41,21 +41,6 @@ export class PiezaComponent implements OnInit {
         this.paginador = response;
       });
     })
-    
-    // this.piezaService.getPiezas().subscribe(
-    //   piezas => this.piezas = piezas
-    // );
-
-    //para actualizar la foto si se cambia en el modal.
-    this.modalService.notificarUpload.subscribe(pieza => {
-      this.piezas = this.piezas.map(piezaOriginal=>{
-        if(pieza.id == piezaOriginal.id){
-          piezaOriginal.foto = pieza.foto;
-        }
-        return piezaOriginal;
-      })
-    })
-    
   }
 
   delete(pieza:Pieza):void{

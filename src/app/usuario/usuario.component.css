@@ -1,0 +1,102 @@
+.fund {
+    position:relative;
+    background-image: url(../../assets/img/fondoGeneral.jpg)!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    min-height: 100vh;
+    background-position: 0 0;
+}
+
+.general_container{
+    position: relative;
+    padding: 30px 40px; 
+}
+
+.user_container{
+    background-color:#fffaf0;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
+    padding: 20px;
+    text-align: center;
+}
+
+.img_header{
+    width: 80%;
+}
+
+.container_table{
+    background-color:#cf9c4e;
+    border: none;
+    box-shadow: 0px 0px 5px 1px #cccccc ;
+    margin: 30px 30px 50px 30px;
+}
+
+.header_card{
+    background-color:#cf9c4e;
+    height: auto;
+    width: 100%;
+    min-width: max-content;
+}
+
+.title{
+    text-align: center;
+    width: 100%;
+}
+
+.body_card{
+    background-color:#fcf2dc;
+    width: 100%;
+    min-width: max-content;
+}
+
+.user_table{
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.buttons{
+    background-color:#eecd86 ;
+    color:black;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
+}
+
+.container_paginador{
+    display: flex;
+    justify-content: center;
+}
+
+/* media tablet */
+
+@media (max-width: 768px){
+    .img_header{
+        width: 100%;
+    }
+
+    .general_container{
+        padding: 30px 20px; 
+    }
+
+    .container_table{
+        margin: 0px;
+        width: 100%;
+    }
+}
+/* media móvil */
+
+@media (max-width: 360px){
+    *{
+        box-sizing: content-box !important;
+    }
+
+    .general_container{
+        padding: 20px 10px;
+    }
+    .user_container{
+        padding: 20px 10px;
+    }
+
+    .container_table{
+        margin:10px 0px 10px 0px;
+    }
+}

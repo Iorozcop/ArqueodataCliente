@@ -1,9 +1,36 @@
-.general{
+.fund {
+    position:relative;
+    background-image: url(../../assets/img/fondoGeneral.jpg)!important;
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    min-height: 100vh;
+    background-position: 0 0;
+}
+
+.general_container{
+    position: relative;
+    padding: 30px;
+}
+
+.container_form{
+    background-color:#fffaf0;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
     padding: 20px;
 }
 
-.coordenada{
+.form{
+    background-color: #fcf2dc;
+    padding: 30px;
+}
+
+.coordinate{
     margin-bottom: 10px;
+}
+
+.input_pieza{
+    box-shadow: none !important;
 }
 
 input:required {
@@ -14,20 +41,50 @@ select:required{
     outline: 1px solid tomato;
 }
 
-.subir_foto{
+.upload_photo{
     align-items: flex-end;
     display: flex;
 }
 
 .boton_cargar{
-    width: 100%;
+    background-color:#eecd86;
+    color: black;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
 }
 
-.buttonContainer{
+.button_container{
     display: flex;
     justify-content: space-between;
 }
 
-.boton{
-    margin-right: 5px;
+.button{
+    margin-left: 5px;
+    background-color:#eecd86;
+    color: black;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
+}
+
+/* media móvil */
+
+@media (max-width: 360px){
+    .general_container{
+        padding:20px 10px;
+    }
+
+    .container_form{
+        padding:20px 10px;
+    }
+
+    .form{
+        padding:20px;
+    }
+
+    .button_group{
+        display: flex;
+        height: max-content;
+    }
+
+    .button_container{
+        align-items: center;
+    }
 }

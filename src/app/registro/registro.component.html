@@ -1,12 +1,11 @@
-<div class="fondo">
- 
-    <div class="general container h-100">
+<main class="fondo">
+    <div class="h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
                 <div class="d-flex justify-content-center">
                     <div class="brand_logo_container">
                         <figure>
-                            <img src="../../assets/img/logoarqueodata.jpg" class="brand_logo" alt="Logo">
+                            <img src="../../assets/img/logoarqueodata.jpg" class="brand_logo" alt="Logo arqueodata">
                         </figure>
                     </div>
                 </div>
@@ -18,12 +17,11 @@
                             </div>
                             <input type="text" name="" class="form-control input_user" placeholder="nombre" [(ngModel)]="usuario.username" name="nombre" required> 
                         </div>
-
                         <div class="input-group mb-3">
                             <div class="input-group-append">
-                                <span class="input-group-text"><i class="icon fas fa-user"></i></span>
+                                <span class="input-group-text"><i class="icon fas fa-envelope"></i></span>
                             </div>
-                            <input type="email" name="email" class="form-control input_user" placeholder="email"[(ngModel)]="usuario.email" required>
+                            <input type="email" name="email" class="form-control input_email" placeholder="email"[(ngModel)]="usuario.email" required>
                         </div>
                         <div class="input-group mb-2">
                             <div class="input-group-append">
@@ -31,11 +29,13 @@
                             </div>
                             <input type="password" name="pass" class="form-control input_pass" placeholder="contraseña" [(ngModel)]="usuario.password" required>
                         </div>
+                        <!--lista de errores-->
                         <ul class="alert alert-danger" *ngIf="errores?.length > 0" >
                             <li class="listError" *ngFor="let err of errores">
                                 {{ err }}
                             </li>
                         </ul>
+                        <!--botones-->
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <button type="submit" name="button" class="btn login_btn" (click)="crear()"
                             *ngIf="!usuario.id else elseBlock">Registrarse</button>
@@ -45,9 +45,8 @@
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
     </div>
-</div>
+</main>
 

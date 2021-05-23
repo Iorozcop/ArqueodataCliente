@@ -39,8 +39,6 @@ export class LoginComponent implements OnInit {
       return;}
 
     this.autService.login(this.usuario).subscribe(response => {
-      console.log(response);
-
       this.autService.guardarUsuario(response.access_token);
       this.autService.guardarToken(response.access_token);
       this.router.navigate(['/inicio']);

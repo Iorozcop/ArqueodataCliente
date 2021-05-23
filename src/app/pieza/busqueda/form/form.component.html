@@ -1,173 +1,117 @@
+<!--cabecera-->
 <app-header></app-header>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-    <h1 class="display-4">Buscar</h1>
-    <p class="lead">Rellene el siguiente formulario para buscar piezas en la base de datos</p>
+<!--modal-->
+<detalle-pieza *ngIf= "piezaSeleccionada" [pieza]= "piezaSeleccionada"></detalle-pieza>
 
-    <div class="col">
-        <div class="content_form card h-100 general">
-        <form >
-            <!-- input fecha y yacimiento -->
-            <div class="row mb-4">
+<!--formulario de búsqueda-->
+<main class="fondo">
+    <div class="general_container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container_form_general">
+                <h1 class="display-4">Buscar</h1>
+                <p class="lead text_form_search">Rellene el siguiente formulario para buscar piezas en la base de datos</p>
                 <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="fecha">Fecha</label>
-                        <input type="date" id="fecha" class="form-control" name="fecha" [(ngModel)]="pieza.fecha"/>
+                    <div class="container_form card h-100">
+                        <form >
+                            <!-- input fecha y yacimiento -->
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="fecha">Fecha</label>
+                                        <input type="date" id="fecha" class="input_form form-control" name="fecha" [(ngModel)]="pieza.fecha"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="yacimiento">Yacimiento</label>
+                                        <select class="input_form form-control" name="yacimiento" [(ngModel)]="pieza.yacimiento">
+                                            <option [ngValue]="undefined" selected>Elige uno...</option>
+                                            <option *ngFor="let yacimiento of yacimientos" [ngValue]="yacimiento">{{yacimiento.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- input campaña y util -->
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="util">Útil</label>
+                                        <input type="text" id="util" class="input_form form-control" name="util" [(ngModel)]="pieza.util" maxlength="15"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="campaña">campaña</label>
+                                        <select class="input_form form-control" name="campain" [(ngModel)]="pieza.campain">
+                                            <option [ngValue]="undefined" selected>Elige...</option>
+                                            <option type="number" *ngFor="let campain of campains" [ngValue]="campain">{{campain.campain}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <!-- material input -->
+                            <div class="form-outline mb-4">
+                                <div class="form-group">
+                                    <label for="material">Material</label>
+                                    <select class="input_form form-control" name="material" [(ngModel)]="pieza.material">
+                                        <option [ngValue]="undefined" selected>Elige uno...</option>
+                                        <option ngValue="hueso">Hueso</option>
+                                        <option ngValue="ceramica">Cerámica</option>
+                                        <option ngValue="metal">Metal</option>
+                                        <option ngValue="cristal">Cristal</option>
+                                        <option ngValue="organico">Orgánico</option>
+                                        <option ngValue="piedra">Piedra</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- boton buscar -->
+                            <div class="btn_group">
+                                <button type="submit" (click)="buscar()" class="btn_form btn btn-block">Buscar</button>
+                                <button type="submit" [routerLink]= "['/piezas']" class="btn_form btn btn-block">Atrás</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="yacimiento">Yacimiento</label>
-                        <select class="form-control" name="yacimiento" [(ngModel)]="pieza.yacimiento">
-                            <option [ngValue]="undefined" selected>Elige uno...</option>
-                            <option *ngFor="let yacimiento of yacimientos" [ngValue]="yacimiento">{{yacimiento.nombre}}</option>
-                        </select>
-                    </div>
+        
+                <!--tabla de resultados-->
+                <div class="alert alert-danger" *ngIf="piezas?.length <= 0 && errores">
+                    <p>No se han encontrado resultados para esta búsqueda</p>
+                </div>
+                <div class="card-body table-responsive" *ngIf="piezas?.length > 0">
+                    <hr />
+                    <p *ngIf="piezas?.length > 1" class="lead table_title">Se han encontrado {{piezas.length}} piezas con estos criterios de búsqueda:</p>
+                    <p *ngIf="piezas?.length == 1" class="lead table_title">Se ha encontrado {{piezas.length}} pieza con estos criterios de búsqueda:</p>
+                    <table class="table table_busqueda">
+                        <thead class="thead-dark cabecera-tabla">
+                            <tr>
+                                <th scope="col">FECHA</th>
+                                <th scope="col">YACIMIENTO</th>
+                                <th scope="col">ÚTIL</th>
+                                <th scope="col">CAMPAÑA</th>
+                                <th scope="col">MATERIAL</th>
+                                <th scope="col">DETALLE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let pieza of piezas">
+                                <td>{{pieza.fecha}}</td>
+                                <td>{{pieza.yacimiento?.nombre}}</td>
+                                <td>{{pieza.util}}</td>
+                                <td>{{pieza.campain?.campain}}</td>
+                                <td>{{pieza.material}}</td>
+                                <td><button type="button" name="button" class="btn btn_form btn_ver" (click)="abrirModal(pieza)"><i class="far fa-eye"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <!-- input campaña y util -->
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="util">Útil</label>
-                        <input type="text" id="util" class="form-control" name="util" [(ngModel)]="pieza.util"/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="campaña">campaña</label>
-                        <select class="form-control" name="campain" [(ngModel)]="pieza.campain">
-                            <option [ngValue]="undefined" selected>Elige...</option>
-                            <option type="number" *ngFor="let campain of campains" [ngValue]="campain">{{campain.campain}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- material input -->
-            <div class="form-outline mb-4">
-                <div class="form-group">
-                    <label for="material">Material</label>
-                    <select class="form-control" name="material" [(ngModel)]="pieza.material">
-                        <option [ngValue]="undefined" selected>Elige uno...</option>
-                        <option ngValue="hueso">Hueso</option>
-                        <option ngValue="ceramica">Cerámica</option>
-                        <option ngValue="metal">Metal</option>
-                        <option ngValue="cristal">Cristal</option>
-                        <option ngValue="organico">Orgánico</option>
-                        <option ngValue="piedra">Piedra</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- coordenadas input -->
-            <!-- <div class="form-outline mb-4">
-                <fieldset>
-                    <legend>Coordenadas: </legend>
-                    <input type="number" id="x" class="form-control coordenada" placeholder="Coordenadas X"
-                    name="x" [(ngModel)]="pieza.coordenadasX" required/>
-
-                    <input type="number" id="y" class="form-control coordenada" placeholder="Coordenadas Y"
-                    name="y" [(ngModel)]="pieza.coordenadasY" required/>
-
-                    <input type="number" id="z" class="form-control coordenada" placeholder="Coordenadas Z"
-                    name="z" [(ngModel)]="pieza.coordenadasZ" required/>
-                </fieldset>
-            </div> -->
-
-            <!-- Radiobuttons -->
-            <!-- <fieldset class="form-group">
-                <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Estado</legend>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="mb" 
-                                value="mb" [(ngModel)]="pieza.estado"/>
-                            <label class="form-check-label" for="mb">
-                                Muy bien conservado
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="bien" 
-                                value="bien" [(ngModel)]="pieza.estado"/>
-                            <label class="form-check-label" for="bien">
-                                Bien conservado
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="mal" 
-                                value="mal" [(ngModel)]="pieza.estado"/>
-                            <label class="form-check-label" for="mal">
-                                Mal conservado
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </fieldset> -->
-
-            <!-- zona -->
-            <!-- <div class="form-outline mb-4">
-                <label class="form-label" for="zona">Zona</label>
-                <input type="text" class="form-control" id="zona" name="zona" [(ngModel)]="pieza.zona" required/>
-            </div> -->
-            
-            <!-- Observaciones -->
-            <!-- <div class="form-outline mb-4">
-                <label class="form-label" for="form6Example7">Observaciones</label>
-                <textarea class="form-control" id="form6Example7" rows="4"
-                name="observaciones" [(ngModel)]="pieza.observaciones"></textarea>
-            </div> -->
-
-            <!-- input foto -->
-            <!-- <div class="form-outline mb-4">
-                <label class="form-label" for="foto">Foto</label>
-                <input type="text" id="foto" class="form-control" name="foto" [(ngModel)]="pieza.foto"/>
-            </div> -->
-            
-            <!-- boton buscar -->
-            <div class="botones">
-                <button type="submit" (click)="buscar()" class="btn_form btn btn-primary btn-block mb-4">Buscar</button>
-                <button type="submit" [routerLink]= "['/piezas']" class="btn_form btn btn-primary btn-block mb-4">Atrás</button>
-            </div>
-        </form>
         </div>
-        </div>
-
-        <!--tabla de resultados-->
-        <div class="alert alert-danger" *ngIf="piezas?.length <= 0 && errores">
-            <p>No se han encontrado resultados para esta búsqueda</p>
-        </div>
-        <div class="card-body text-primary" *ngIf="piezas?.length > 0">
-            <h5 class="card-title">Piezas encontradas con estos criterios de búsqueda:</h5>
-
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">fecha</th>
-                        <th scope="col">yacimiento</th>
-                        <th scope="col">útil</th>
-                        <th scope="col">campaña</th>
-                        <th scope="col">material</th>
-                        <th scope="col">Detalle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let pieza of piezas">
-                        <td>{{pieza.fecha}}</td>
-                        <td>{{pieza.yacimiento?.nombre}}</td>
-                        <td>{{pieza.util}}</td>
-                        <td>{{pieza.campain?.campain}}</td>
-                        <td>{{pieza.material}}</td>
-                        <button type="button" name="button" class="btn btn-primary eliminar_btn" (click)="abrirModal(pieza)">Ver detalle</button>
-                    </tr>
-                </tbody>
-            </table>
-
-            </div>
     </div>
-</div>
-
-
+</main>
+    
+<!--componente footer-->
 <app-footer></app-footer>

@@ -46,6 +46,14 @@ export class RegistroComponent implements OnInit {
         )
       },
       err => {
+        if(err.status == 500){
+          console.log(err.error.mensaje);
+          Swal.fire({
+            icon: 'error',
+            title: err.error.mensaje,
+            text: 'Puede que el nombre o el email ya existan en la BBDD'
+          })
+        }
         this.errores = err.error.errors as string[];
         console.error("codigo del error: " + err.status);
         console.error(err.console.error.errors);

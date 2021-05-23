@@ -27,13 +27,16 @@ export class UsuarioService {
         if(e.status == 400){
           return throwError(e);
         }
-        console.log(e.error.mensaje);
-        this.router.navigate(['/piezas']);
-        Swal.fire({
-          icon: 'error',
-          title: e.error.mensaje,
-          text: 'Puede que el nombre o el email ya existan en la BBDD'
-        })
+        // if(e.status == 500){
+        //   console.log(e.error.mensaje);
+        //   Swal.fire({
+        //     icon: 'error',
+        //     title: e.error.mensaje,
+        //     text: 'Puede que el nombre o el email ya existan en la BBDD'
+        //   })
+        // }
+        // this.router.navigate(['/piezas']);
+        
         //throwError es para retornar el error pero tipo observable
         return throwError(e);
       })

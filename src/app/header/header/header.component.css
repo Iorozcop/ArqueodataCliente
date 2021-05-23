@@ -2,6 +2,49 @@
     justify-content: space-between;
 }
 
+.enlace_logo{
+    width: 15%;
+}
+
+.img_logo{
+    width: 100%;
+}
+
 .cabecera{
     background-color: #eecd86 !important;
+}
+
+.welcome{
+    font-weight: 600;
+}
+
+.button{
+    margin-left: 5px;
+    background-color:#fcf2dc69;
+    color: black;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
+}
+
+/* media 992 boostrap*/
+
+@media (max-width: 992px){
+    .enlace_logo{
+        width: 25%;
+    }  
+}
+
+/* media tablet*/
+
+@media (max-width: 768px){
+    .enlace_logo{
+        width: 30%;
+    }  
+}
+
+/* media móvil */
+
+@media (max-width: 360px){
+    .enlace_logo{
+        width: 40%;
+    }  
 }

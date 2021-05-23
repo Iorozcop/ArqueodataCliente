@@ -6,47 +6,52 @@
 <detalle-pieza *ngIf= "piezaSeleccionada" [pieza]= "piezaSeleccionada"></detalle-pieza>
 
 <!--listado piezas-->
-<div class="fondo">
+<main class="fondo">
   <div class="general_container jumbotron jumbotron-fluid">
-    <div class="container piezas_content">
-      <div class="cabecera"> 
-        <h1 class="display-4">Listado de piezas</h1>
-        <div>
-          <button type="button" name="button" class="btn botones" [routerLink]= "['/piezas/search']">Buscar</button>
-          <button type="button" name="button" class="btn botones" [routerLink]= "['/crear']">Crear</button>
-        </div>
-        
-      </div>
+    <div class="piezas_container">
+      <figure class="container_img_header">
+        <img class="img_header" src="../../assets/img/cabecera_camp.png" alt="ilustración de usuarios">
+      </figure>
       <hr />
-      <p class="lead">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio molestias eaque officia, odio voluptas ipsam? Delectus quaerat nihil illo dicta expedita! Doloremque commodi culpa iste facere voluptatum obcaecati minus iusto!</p>
-      <div class="row row-cols-3 row-cols-md-3 g-4  card_container">
+      <div class="header_title_container"> 
+        <h6 class="display-6">Piezas</h6>
+        <div>
+          <button type="button" name="button" class="btn buttons" [routerLink]= "['/piezas/search']">Buscar</button>
+          <button type="button" name="button" class="btn buttons" [routerLink]= "['/crear']">Crear</button>
+        </div>
+      </div>
+      <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-3 g-4 card_container">
+        <!--grupo de cards-->
         <div class="col" *ngFor= "let pieza of piezas">
-          <div class="card h-100">
-            <img *ngIf="pieza?.foto" src="http://localhost:8449/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
-            <img *ngIf="!pieza?.foto" src="http://localhost:8449/images/logoarqueodata.jpg" class="card-img-top" alt="sin foto">
-            <div class="card-header">
-              <h5 class="card-title">{{pieza.yacimiento!.nombre}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Campaña: {{pieza.campain!.campain}}</h6>
+          <div class="card h-100 shadow_card">
+              <img class="h-40" *ngIf="pieza?.foto" src="http://localhost:8449/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
+              <img *ngIf="!pieza?.foto" src="http://localhost:8449/images/logoCard.jpg" class="card-img-top" alt="sin foto">
+            <div class="card-header header_card">
+              <h5 class="card-title">{{pieza.yacimiento.nombre}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Campaña: {{pieza.campain.campain}}</h6>
             </div>
             <div class="card-body">
-              <!--la ! es para que no salte un error, le estamos diciendo que eso no puede ser nulo y que no se queje-->
-              
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Fecha hallazgo: <small>{{pieza.fecha | date:"dd-MM-yyyy"}}</small></li>
                 <li class="list-group-item">Zona: <small>{{pieza.zona}}</small></li>
-                <div class="buttonGroup">
-                  <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-outline-secondary margen_btn" (click)="delete(pieza)">eliminar</button>
-                  <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-outline-secondary margen_btn" [routerLink]= "['/crear', pieza.id]">editar</button>
-                  <button type="button" name="button" class="btn btn-outline-secondary margen_btn" (click)="abrirModal(pieza)">Ver detalle</button>
+                <div class="button_group">
+                  <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-outline-secondary button_icon" (click)="delete(pieza)"><i class="fas fa-trash"></i></button>
+                  <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-outline-secondary button_icon" [routerLink]= "['/crear', pieza.id]"><i class="far fa-edit"></i></button>
+                  <button type="button" name="button" class="btn btn-outline-secondary button_icon" (click)="abrirModal(pieza)"><i class="far fa-eye"></i></button>
                 </div>
               </ul>
             </div>
           </div>
         </div>
+      </div>
+      <!--componente paginador-->
+      <div class="container_paginador">
+        <paginador-nav *ngIf="paginador" [entidad]= 'entidad' [paginador]= 'paginador'></paginador-nav>
+      </div>
     </div>
-    <paginador-nav *ngIf="paginador" [entidad]= 'entidad' [paginador]= 'paginador'></paginador-nav>
   </div>
-  </div>
-</div>
+</main>
+
+<!--componente footer-->
 <app-footer></app-footer>
 

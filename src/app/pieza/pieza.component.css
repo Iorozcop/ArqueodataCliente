@@ -1,45 +1,117 @@
 .fondo {
     position:relative;
     background-image: url(../../assets/img/fondoGeneral.jpg)!important;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     height: auto;
+    min-height: 100vh;
     background-position: 0 0;
 }
 .general_container{
     position: relative;
-    padding: 20px;
+    padding: 30px 40px; 
 }
 
-.piezas_content{
+.piezas_container{
+    background-color:#fffaf0;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
     padding: 30px;
-    background-color: white;
+    text-align: start;
 }
 
-.botones{
+.container_img_header{
+    text-align: center !important;
+}
+
+.img_header{
+    width: 80%;
+}
+
+.header_title_container{
+    align-items: center;
+    background-color:#cf9c4e;
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.buttons{
     background-color:#eecd86 ;
     color:black;
     margin: 5px;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
 }
 
-.noborder{
-    border:none !important;
-    padding: 0px 0px 2px 0px;
-}
-
-.cabecera{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
 .card_container{
-    margin-bottom: 20px;
+    background-color:#fcf2dc;
+    padding: 10px 10px 20px 10px;
+    margin: 0px 0px 10px 0px;
 }
 
-.buttonGroup{
+.header_card{
+    background-color: #eecd86cc;
+}
+
+.shadow_card{
+    border: none;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
+}
+
+.button_group{
     display: flex;
-    justify-content: space-around;
+    justify-content:flex-end;
 }
 
-.margen_btn{
-    margin:20px 0px 0px 0px;
+.button_icon{
+    margin:20px 5px 0px 0px;
+    color: #cf9c4e;
+    background-color:#fffaf0;
+}
+
+.container_paginador{
+    display: flex;
+    justify-content: center;
+}
+
+/* media 992 boostrap */
+
+@media (max-width: 992px){
+    .general_container{
+        max-width: none;
+    }  
+}
+
+/* media tablet */
+
+@media (max-width: 768px){
+    .general_container{
+        max-width: none;
+        padding: 30px 20px; 
+    }
+
+    .header_title_container{
+        padding: 10px 15px;
+    }
+
+    .img_header{
+        width: 100%;
+    }
+}
+
+/* media móvil */
+
+@media (max-width: 360px){
+    .general_container{
+        padding: 20px 10px;
+    }
+
+    .header_title_container{
+        padding: 10px 10px;
+    }
+
+    .piezas_container{
+        padding:30px 10px;
+    }
 }

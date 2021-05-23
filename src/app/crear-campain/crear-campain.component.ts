@@ -43,8 +43,8 @@ export class CrearCampainComponent implements OnInit {
       campain => {
         this.router.navigate(['/piezas/campains'])
         Swal.fire(
-          'Usuario editado',
-          `Usuario editado con éxito`,
+          'Campaña editada',
+          `Campaña editada con éxito`,
           'success'
         )
       }
