@@ -1,162 +1,174 @@
+<!--componente cabecera-->
 <app-header></app-header>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-    <h1 class="display-4">Crear pieza</h1>
-    <p class="lead">Rellene el siguiente formulario para introducir una nueva pieza en la base de datos</p>
-
-    <div class="col">
-        <div class="card h-100 general">
-        <form #registro="ngForm">
-            <!-- input fecha y yacimiento -->
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="fecha">Fecha*</label>
-                        <input type="date" id="fecha" class="form-control" name="fecha" [(ngModel)]="pieza.fecha" required/>
-                    </div>
+<!--contenido crear pieza-->
+<main class="fund">
+    <div class="general_container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container_form">
+                <div *ngIf="!pieza.id">
+                    <h1 class="display-4">Crear pieza</h1>
+                    <p class="lead">Rellene el siguiente formulario para introducir una nueva pieza en la base de datos</p>
+                </div>
+                <div *ngIf="pieza.id">
+                    <h1 class="display-4">Editar pieza</h1>
+                    <p class="lead">Rellene el siguiente formulario para realizar los cambios en la pieza</p>
                 </div>
                 <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="yacimiento">Yacimiento*</label>
-                        <select [compareWith] = "compararYacimiento" class="form-control" name="yacimiento" [(ngModel)]="pieza.yacimiento" required>
-                            <option *ngFor="let yacimiento of yacimientos" [ngValue]="yacimiento">{{yacimiento.nombre}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- input campaña y util -->
-            <div class="row mb-4">
-                <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="util">Útil</label>
-                        <input type="text" id="util" class="form-control" name="util" [(ngModel)]="pieza.util"/>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <label class="form-label" for="campaña">Campaña*</label>
-                        <select [compareWith] = "compararCampain" class="form-control" name="campain" [(ngModel)]="pieza.campain" required>
-                            <option type="number" *ngFor="let campain of campains" [ngValue]="campain">{{campain.campain}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- material input -->
-            <div class="form-outline mb-4">
-                <div class="form-group">
-                    <label for="material">Material</label>
-                    <select class="form-control" name="material" [(ngModel)]="pieza.material">
-                        <option [ngValue]="undefined" selected>Elige uno...</option>
-                        <option ngValue="hueso">Hueso</option>
-                        <option ngValue="ceramica">Cerámica</option>
-                        <option ngValue="metal">Metal</option>
-                        <option ngValue="cristal">Cristal</option>
-                        <option ngValue="organico">Orgánico</option>
-                        <option ngValue="piedra">Piedra</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- coordenadas input -->
-            <div class="form-outline mb-4">
-                <p>Coordenadas*: </p>
-                <input type="number" id="x" name="x" class="form-control coordenada" placeholder="Coordenadas X"
-                    [(ngModel)]="pieza.coordenadasX" required/>
+                    <div class="card h-100 form">
+                        <form #registro="ngForm">
+                            <!-- input fecha y yacimiento -->
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="fecha">Fecha*</label>
+                                        <input type="date" id="fecha" class="input_pieza form-control" name="fecha" [(ngModel)]="pieza.fecha" required/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="yacimiento">Yacimiento*</label>
+                                        <select [compareWith] = "compararYacimiento" class="input_pieza form-control" name="yacimiento" [(ngModel)]="pieza.yacimiento" required>
+                                            <option *ngFor="let yacimiento of yacimientos" [ngValue]="yacimiento">{{yacimiento.nombre}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                 
-                <input type="number" id="y" name="y" class="form-control coordenada" placeholder="Coordenadas Y"
-                    [(ngModel)]="pieza.coordenadasY" required/>
+                            <!-- input campaña y util -->
+                            <div class="row mb-4">
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="util">Útil</label>
+                                        <input type="text" id="util" class="input_pieza form-control" name="util" [(ngModel)]="pieza.util"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <label class="form-label" for="campaña">Campaña*</label>
+                                        <select [compareWith] = "compararCampain" class="input_pieza form-control" name="campain" [(ngModel)]="pieza.campain" required>
+                                            <option type="number" *ngFor="let campain of campains" [ngValue]="campain">{{campain.campain}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                 
-                <input type="number" id="z" name="z" class="form-control coordenada" placeholder="Coordenadas Z"
-                    [(ngModel)]="pieza.coordenadasZ" required/>
-            </div>
-
-            <!-- Radiobuttons -->
-            <fieldset class="form-group">
-                <div class="row">
-                    <legend class="col-form-label col-sm-2 pt-0">Estado</legend>
-                    <div class="col-sm-10">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="mb" 
-                                value="muy bien" [(ngModel)]="pieza.estado"/>
-                            <label class="form-check-label" for="mb">
-                                Muy bien conservado
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="bien" 
-                                value="bien" [(ngModel)]="pieza.estado"/>
-                            <label class="form-check-label" for="bien">
-                                Bien conservado
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="estado" id="mal" 
-                                value="mal" [(ngModel)]="pieza.estado"/>
-                            <label class="form-check-label" for="mal">
-                                Mal conservado
-                            </label>
-                        </div>
+                            <!-- material input -->
+                            <div class="form-outline mb-4">
+                                <div class="form-group">
+                                    <label for="material">Material</label>
+                                    <select class="input_pieza form-control" name="material" [(ngModel)]="pieza.material">
+                                        <option [ngValue]="undefined" selected>Elige uno...</option>
+                                        <option ngValue="hueso">Hueso</option>
+                                        <option ngValue="ceramica">Cerámica</option>
+                                        <option ngValue="metal">Metal</option>
+                                        <option ngValue="cristal">Cristal</option>
+                                        <option ngValue="organico">Orgánico</option>
+                                        <option ngValue="piedra">Piedra</option>
+                                    </select>
+                                </div>
+                            </div>
+                
+                            <!-- coordenadas input -->
+                            <div class="form-outline mb-4">
+                                <p>Coordenadas*: </p>
+                                <input type="number" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="x" name="x" class="input_pieza form-control coordinate" placeholder="Coordenadas X"
+                                    [(ngModel)]="pieza.coordenadasX" required/>
+                                
+                                <input type="number" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="y" name="y" class="input_pieza form-control coordinate" placeholder="Coordenadas Y"
+                                    [(ngModel)]="pieza.coordenadasY" required/>
+                                
+                                <input type="number" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="z" name="z" class="input_pieza form-control coordinate" placeholder="Coordenadas Z"
+                                    [(ngModel)]="pieza.coordenadasZ" required/>
+                            </div>
+                
+                            <!-- Radiobuttons -->
+                            <fieldset class="form-group">
+                                <div class="row">
+                                    <legend class="col-form-label col-sm-2 pt-0">Estado</legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-check">
+                                            <input class="input_pieza form-check-input" type="radio" name="estado" id="mb" 
+                                                value="muy bien" [(ngModel)]="pieza.estado"/>
+                                            <label class="form-check-label" for="mb">
+                                                Muy bien conservado
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="input_pieza form-check-input" type="radio" name="estado" id="bien" 
+                                                value="bien" [(ngModel)]="pieza.estado"/>
+                                            <label class="form-check-label" for="bien">
+                                                Bien conservado
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="input_pieza form-check-input" type="radio" name="estado" id="mal" 
+                                                value="mal" [(ngModel)]="pieza.estado"/>
+                                            <label class="form-check-label" for="mal">
+                                                Mal conservado
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                
+                            <!-- zona -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="zona">Zona*</label>
+                                <input type="text" class="input_pieza form-control" id="zona" name="zona" [(ngModel)]="pieza.zona" required/> 
+                            </div>
+                            
+                            <!-- Observaciones -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form6Example7">Observaciones</label>
+                                <textarea class="input_pieza form-control" maxlength="250" id="form6Example7" rows="4"
+                                name="observaciones" [(ngModel)]="pieza.observaciones"></textarea>
+                            </div>
+                
+                            <!-- subir foto -->
+                            <div class="upload_photo" *ngIf="pieza.id">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <label for="formFileLg" class="form-label">Subir foto</label>
+                                        <input (change)="seleccionarFoto($event)" class="form-control" id="formFileLg" type="file">
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn boton_cargar" type="button" id="formFileLgAddon">Subir</button>
+                                </div>
+                            </div>
+                            <hr />
+                            
+                            <!--listado de errores-->
+                            <ul class="alert alert-danger" *ngIf="errores?.length > 0" >
+                                <li *ngFor="let err of errores">
+                                    {{ err }}
+                                </li>
+                            </ul>
+                
+                            <!--botones-->
+                            <div class="button_container">
+                                <p>* campos obligatorios</p>  
+                                <div class="button_group">
+                                    <!-- Crear o editar button -->
+                                    <button type="submit" (click)="crear()" class="btn btn-block button"
+                                        *ngIf="!pieza.id else elseBlock" >Crear</button>
+                                    <ng-template #elseBlock>
+                                        <button type="submit" name="button" class="btn button" (click)="update()">Editar</button>
+                                    </ng-template>
+                                    <!--botón atrás-->
+                                    <button name="button" class="btn button" [routerLink]= "['/piezas']">Atrás</button>
+                                </div>
+                            </div> 
+                        </form>
                     </div>
                 </div>
-            </fieldset>
-
-            <!-- zona -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="zona">Zona*</label>
-                <input type="text" class="form-control" id="zona" name="zona" [(ngModel)]="pieza.zona" required/> 
             </div>
-            
-            <!-- Observaciones -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="form6Example7">Observaciones</label>
-                <textarea class="form-control" id="form6Example7" rows="4"
-                name="observaciones" [(ngModel)]="pieza.observaciones"></textarea>
-            </div>
-
-            <!-- subir foto -->
-            <div class="subir_foto">
-                <div class="input-group">
-                    <div class="custom-file">
-                        <label for="formFileLg" class="form-label">Subir foto</label>
-                        <input (change)="seleccionarFoto($event)" class="form-control" id="formFileLg" type="file">
-                    </div>
-                </div>
-                <div class="input-group-append">
-                    <button (click)="subirFoto()" [disabled]="!fotoSeleccionada" class="btn btn-outline-secondary boton_cargar" type="button" id="formFileLgAddon">Cargar foto</button>
-                </div>
-            </div>
-            <hr />
-            
-            <!--listado de errores-->
-            <ul class="alert alert-danger" *ngIf="errores?.length > 0" >
-                <li *ngFor="let err of errores">
-                    {{ err }}
-                </li>
-            </ul>
-
-            <!--botones-->
-            <div class="buttonContainer">
-                <div>
-                    <!-- Crear o editar button -->
-                    <button type="submit" (click)="crear()" class="btn btn-primary btn-block boton"
-                        *ngIf="!pieza.id else elseBlock" >Crear</button>
-                    <ng-template #elseBlock>
-                        <button type="submit" name="button" class="btn btn-primary login_btn boton" (click)="update()">Editar</button>
-                    </ng-template>
-                    <!--botón atrás-->
-                    <button name="button" class="btn btn-primary login_btn boton" [routerLink]= "['/piezas']">Atrás</button>
-                </div>
-                <p>* campos obligatorios</p>  
-            </div> 
-        </form>
-        </div>
         </div>
     </div>
-</div>
+</main>
 
+<!--componente footer-->
 <app-footer></app-footer>
 
 

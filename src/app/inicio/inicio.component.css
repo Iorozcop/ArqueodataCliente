@@ -1,18 +1,73 @@
 .fondo {
     position:relative;
-    /* opacity: 50%; */
-    background-image: url(../../assets/img/fondoLogin.jpg)!important;
+    background-image: url(../../assets/img/fondoGeneral.jpg)!important;
     background-repeat: repeat;
     background-size: cover;
-    height: 940px;
+    height: auto;
+    min-height: 100vh;
     background-position: 0 0;
 }
+
 .general{
-    margin-bottom: 20px;
     margin: 0 auto;
-    width: 80%;
+    padding: 30px 40px; 
+    position: relative;
+    text-align: center;
 }
-.logoInicio{
-    width: 50%;
+
+.container_inicio{
+    padding: 30px;
+    background-color:#ffffff;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
+    width: 100%;
+}
+
+.img_header{
+    width: 80%;
     height: auto;
+}
+
+.container_text_general{
+    background-color: #fffaf0;
+    border-radius: 1%;
+    box-shadow: 1px 1px 9px 1px #0a0a0a25;
+    margin:30px 0px 10px 0px;
+    padding: 20px;
+}
+
+.text_inicio{
+    text-align: start;
+}
+
+.container_logo{
+    width: 100%;
+}
+
+.img_logo{
+    width: 40%;
+}
+
+/* media movil */
+
+@media (max-width: 360px){
+
+    .general{
+        padding: 20px 10px; 
+    } 
+
+    .img_header{
+        width: 100%;
+    }
+
+    .container_inicio{
+        padding: 30px 20px;
+    }
+
+    .text_inicio{
+        font-size: 16px;
+    }
+    
+    .img_logo{
+        width: 100%;
+    }
 }

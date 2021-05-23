@@ -1,22 +1,22 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light cabecera">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Arqueodata</a>
+      <a class="navbar-brand enlace_logo" [routerLink]="['/inicio']">
+        <img class="img_logo" src="../../../assets/img/arqueodata.png" alt="logo Arqueodata">
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!--menú-->
       <div class="collapse navbar-collapse menu" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="/piezas">Piezas</a>
+            <a class="nav-link" routerLink="/piezas">Piezas </a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/crear">Insertar pieza</a>
-          </li> -->
           <li *ngIf="authService.hasRole('ROLE_ADMIN')" class="nav-item">
-            <a class="nav-link" routerLink="/usuarios">Usuarios</a>
+            <a class="nav-link" routerLink="/usuarios">Usuarios </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/piezas/yacimientos">Yacimientos</a>
+            <a class="nav-link" routerLink="/piezas/yacimientos">Yacimientos </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/piezas/campains">Campañas</a>
@@ -24,13 +24,12 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li *ngIf="!authService.isAuthenticated()"><a [routerLink]="['/login']" class="btn btn-outline-primary">Iniciar Sesión</a></li>
-          <li class="nav-link">
+          <li class="nav-link welcome">
               Bienvenido: {{authService.usuario.username}}
           </li>
           <li class="nav-item" *ngIf="authService.isAuthenticated()">
-            <button (click)="logout()" class="btn" type="submit">Cerrar Sesión</button>
+            <button (click)="logout()" class="btn button" type="submit">Cerrar Sesión</button>
           </li>
-
         </ul>
       </div>
     </div>

@@ -1,47 +1,58 @@
+<!--componente cabecera-->
 <app-header></app-header>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Yacimientos</h1>
-        <p class="lead">Listado de yacimientos:</p>
-
-        <div class="card border-primary mb-3">
-            <div class="card-header cabecera_card">Yacimientos
-                <div class="my-2 text-left">
-                    <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded boton" type="button" [routerLink]="['/piezas/crear/yacimiento']">Crear </button>
+<!--contenido yacimientos-->
+<main class="fondo">
+    <div class="general_container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container_yacimientos_general">
+                <figure>
+                    <img class="img_header" src="../../assets/img/cabecera_camp.png" alt="ilustración de usuarios">
+                </figure>
+                <hr />
+                <div class="container_yacimientos">
+                    <div class="card-header header_card_group">
+                        <h6 class="display-6">Yacimientos</h6>
+                        <!--crear-->
+                        <div class="my-2 text-left">
+                            <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded button" type="button" [routerLink]="['/piezas/crear/yacimiento']">Crear </button>
+                        </div>
+                    </div>
+                    <div class="card-body text-primary body_card">
+                        <!--tabla yacimientos-->
+                        <div class="yacimientos_group_container row row-cols-xs-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-4 g-0">
+                            <div class="card_group" *ngFor="let yacimiento of yacimientos">
+                                <div class="card card_yacimiento">
+                                    <h5 class="card-header">
+                                        {{yacimiento.nombre}}
+                                    </h5>
+                                    <div class="card-body card_body">
+                                        <h6 class="card-title">
+                                            {{yacimiento.lugar}}
+                                        </h6>
+                                        <p class="card-text">
+                                            Época: {{yacimiento.epoca}}
+                                        </p>
+                                    </div>
+                                    <div class="button_group">
+                                        <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn button_card" (click)="delete(yacimiento)"><i class="fas fa-trash"></i></button>
+                                        <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn button_card" [routerLink]= "['/piezas/crear/yacimiento', yacimiento.id]"><i class="far fa-edit"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--componente paginador-->
+                        <div class="container_paginador">
+                            <paginador-nav *ngIf="paginador" [entidad]= 'entidad' [paginador]= 'paginador'></paginador-nav>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card-body text-primary">
-            <h5 class="card-title">Yacimientos registrados en Arqueodata</h5>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">nombre</th>
-                        <th scope="col">lugar</th>
-                        <th scope="col">época</th>
-                        <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">eliminar</th>
-                        <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">editar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let yacimiento of yacimientos">
-                        <td>{{yacimiento.id}}</td>
-                        <td>{{yacimiento.nombre}}</td>
-                        <td>{{yacimiento.lugar}}</td>
-                        <td>{{yacimiento.epoca}}</td>
-                        <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary" (click)="delete(yacimiento)">eliminar</button></td>
-                        <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary" [routerLink]= "['/piezas/crear/yacimiento', yacimiento.id]">editar</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            <paginador-nav *ngIf="paginador" [entidad]= 'entidad' [paginador]= 'paginador'></paginador-nav>
-            </div>
         </div>
-    
     </div>
-</div>
+</main>
 
+<!--componente footer-->
 <app-footer></app-footer>
 
 

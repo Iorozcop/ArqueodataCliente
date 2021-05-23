@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { Campain } from '../campain/campain';
-// import { AutenticacionService } from './autenticacion.service';
 import { Router } from '@angular/router';
 import { catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2'
@@ -13,7 +12,6 @@ import Swal from 'sweetalert2'
 
 export class CampainService {
     private urlEndPoint:string = 'http://localhost:8449/api/piezas/campains';
-    // private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
     constructor(private http:HttpClient,
                 private router: Router

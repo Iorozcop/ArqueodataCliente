@@ -1,45 +1,58 @@
+<!--componente cabecera-->
 <app-header></app-header>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-    <h1 class="display-4">Crear campaña</h1>
-    <p class="lead">Rellene el siguiente formulario para introducir una nueva campaña en la base de datos</p>
-
-    <div class="col">
-        <div class="card h-100 general">
-        <form #registro="ngForm">
-
-            <!-- input año campaña  -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="nombre">Campaña*</label>
-                <input type="number" id="nombre" class="form-control" name="nombre" [(ngModel)]="campain.campain" required number #year="ngModel"/>
-                <div class="alert alert-danger" *ngIf="year.invalid && (year.dirty || year.touched)">
-                    <div *ngIf="year.errors!.required">    
-                        El campo es requerido y deben ser números
+<!--contenido crear campaña-->
+<main class="fondo">
+    <div class="general_container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container container_campain">
+                <div *ngIf="!campain.id">
+                    <h1 class="display-6">Crear campaña</h1>
+                    <p class="lead">Rellene el siguiente formulario para introducir una nueva campaña en la base de datos</p>
+                </div>
+                <div *ngIf="campain.id">
+                    <h1 class="display-6">Editar campaña</h1>
+                    <p class="lead">Rellene el siguiente formulario para para realizar los cambios en la campaña</p>
+                </div>
+            <hr />
+            <div class="col container_card">
+                <div class="card-header header_card"></div>
+                    <div class="card h-100 container_form">
+                        <!--formulario-->
+                        <form #registro="ngForm">
+                            <!-- input año campaña  -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="nombre">Campaña*</label>
+                                <input type="number" maxlength="4" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" 
+                                id="nombre" class="input_campain form-control" name="nombre" [(ngModel)]="campain.campain" required number #year="ngModel"/>
+                                <div class="alert alert-danger" *ngIf="year.invalid && (year.dirty || year.touched)">
+                                    <div *ngIf="year.errors!.required">    
+                                        El campo es requerido y deben ser números
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Submit button -->
+                            <div class="button_container">
+                                <p>* campos obligatorios</p>
+                                <div class="button_group">
+                                    <button type="submit" name="button" class="btn btn-block button" (click)="crear()"
+                                    *ngIf="!campain.id else elseBlock" [disabled]="!registro.form.valid">Crear</button>
+                                    <ng-template #elseBlock>
+                                        <button type="submit" name="button" class="btn login_btn button" (click)="update()">Editar</button>
+                                    </ng-template> 
+                                    <!--botón atrás-->
+                                    <button name="button" class="btn login_btn button" [routerLink]= "['/piezas/campains']">Atrás</button>
+                                </div>
+                            </div>   
+                        </form>
                     </div>
                 </div>
             </div>
-            
-            <!-- Submit button -->
-            <div class="buttonContainer">
-                <div>
-                    <button type="submit" name="button" class="btn btn-primary btn-block boton" (click)="crear()"
-                    *ngIf="!campain.id else elseBlock" [disabled]="!registro.form.valid">Crear</button>
-                    <ng-template #elseBlock>
-                        <button type="submit" name="button" class="btn btn-primary login_btn boton" (click)="update()">Editar</button>
-                    </ng-template> 
-                    <!--botón atrás-->
-                    <button name="button" class="btn btn-primary login_btn boton" [routerLink]= "['/piezas/campains']">Atrás</button>
-                </div>
-                
-                <p>* campos obligatorios</p>
-            </div>   
-        </form>
-        </div>
         </div>
     </div>
-</div>
+</main>
 
+<!--componente footer-->
 <app-footer></app-footer>
 
 

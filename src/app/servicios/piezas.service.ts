@@ -105,9 +105,6 @@ export class PiezasService {
   }
 
   //busca piezas
-  // buscaPiezas(pieza: Pieza): Observable<any[]>{
-  //   return this.http.post<any[]>(`${this.urlEndPoint}/search`,pieza);
-  // }
 
   buscaPiezas(pieza: Pieza): Observable<any[]>{
     return this.http.post<any[]>(`${this.urlEndPoint}/search`,pieza).pipe(

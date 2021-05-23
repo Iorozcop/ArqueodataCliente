@@ -1,42 +1,62 @@
+<!--componente cabecera-->
 <app-header></app-header>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <h1 class="display-4">Campañas</h1>
-        <p class="lead">Listado de campañas:</p>
-
-        <div class="card border-primary mb-3">
-            <div class="card-header cabecera_card">Campañas
-                <div class="my-2 text-left">
-                    <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded boton" type="button" [routerLink]="['/piezas/crear/campain']">Crear </button>
+<!--contenido campaña-->
+<main class="fund">
+    <div class="general_container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container_campain">
+                <figure>
+                    <img class="img_header" src="../../assets/img/cabecera_camp.png" alt="ilustración de usuarios">
+                </figure>
+                <hr />
+                <div class="card mb-3 table-responsive container_card">
+                    <div class="card-header header_card">
+                        <div class="container_campain_header">
+                            <h6 class="display-6">Campañas</h6>
+                            <!--crear-->
+                            <div class="my-2 text-left">
+                                <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-rounded button" type="button" [routerLink]="['/piezas/crear/campain']">Crear </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body text-primary body_card">
+                        <div class="container_img_card">
+                            <figure class="figure">
+                                <img class="img_campain" src="../../assets/img/piezas.png" alt="excavación arqueoógica">
+                            </figure>
+                            <!--tabla campañas-->
+                            <div class="table_campain_container">
+                                <table class="table table_campain">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th scope="col">Campaña</th>
+                                            <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">Eliminar</th>
+                                            <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">Editar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let campain of campains">
+                                            <td>{{campain.campain}}</td>
+                                            <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn button" (click)="delete(campain)"><i class="fas fa-trash"></i></button></td>
+                                            <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn button" [routerLink]= "['/piezas/crear/campain', campain.id]"><i class="far fa-edit"></i></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <!--componente paginador-->
+                                <div class="container_paginador">
+                                    <paginador-nav *ngIf="paginador" [entidad]= 'entidad' [paginador]= 'paginador'></paginador-nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="card-body text-primary">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Campaña</th>
-                        <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">Eliminar</th>
-                        <th *ngIf="authService.hasRole('ROLE_ADMIN')" scope="col">Editar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let campain of campains">
-                        <td>{{campain.id}}</td>
-                        <td>{{campain.campain}}</td>
-                        <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary" (click)="delete(campain)">Eliminar</button></td>
-                        <td><button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-primary" [routerLink]= "['/piezas/crear/campain', campain.id]">Editar</button></td>
-                    </tr>
-                </tbody>
-            </table>
-            <paginador-nav *ngIf="paginador" [entidad]= 'entidad' [paginador]= 'paginador'></paginador-nav>
-            </div>
         </div>
-    
     </div>
-</div>
+</main>
 
+<!--componente footer-->
 <app-footer></app-footer>
 
 

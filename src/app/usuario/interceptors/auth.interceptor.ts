@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Opps... ha ocurrido un error'
+            text: 'No tienes acceso a este recurso'
           });
           this.router.navigate(['/piezas']);
         }

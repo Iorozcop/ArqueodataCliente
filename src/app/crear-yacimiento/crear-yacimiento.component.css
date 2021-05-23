@@ -1,17 +1,69 @@
+.fund {
+    position:relative;
+    background-image: url(../../assets/img/fondoGeneral.jpg)!important;
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    min-height: 100vh;
+    background-position: 0 0;
+}
+
+.general_container{
+    position: relative;
+    padding: 30px;
+}
+
 .general{
+    background-color:#fcf2dc ;
     margin-bottom: 20px;
     padding: 20px;
+}
+
+.container_yacimiento{
+    background-color:#fffaf0;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
+    padding: 30px;
+}
+
+.header_card{
+    background-color:#cf9c4e  ;
+    height: 35px;
+}
+
+.inputs{
+    box-shadow: none !important;
 }
 
 input:required {
     outline: 1px solid tomato;
 }
 
-.buttonContainer{
+.button_container{
     display: flex;
     justify-content: space-between;
 }
 
-.boton{
-    margin-right: 5px;
+.button{
+    margin-left: 5px;
+    background-color: #eecd86;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
+}
+
+/* media móvil */
+
+@media (max-width: 360px){
+    .general_container{
+        padding: 20px 10px;
+    }
+
+    .container_yacimiento{
+        padding: 20px;
+    }
+
+    .button_group{
+        display: flex;
+        height: max-content;
+    }
+
 }

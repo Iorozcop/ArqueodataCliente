@@ -1,72 +1,70 @@
+<!--componente cabecera-->
 <app-header></app-header>
 
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-    <h1 class="display-4">Crear yacimiento</h1>
-    <p class="lead">Rellene el siguiente formulario para introducir un nuevo yacimiento en la base de datos</p>
-
-    <div class="col">
-        <div class="card h-100 general">
-        <form #registro="ngForm">
-            <!-- input nombre -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="nombre">Nombre*</label>
-                <input type="text" id="nombre" class="form-control" name="nombre" [(ngModel)]="yacimiento.nombre" required #nombre="ngModel" minlength="2" maxlength="20" />
-                <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
-                    <div *ngIf="nombre.errors.required">    
-                        Campo obligatorio
+<!--contenido crear yacimiento-->
+<main class="fund">
+    <div class="general_container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container container_yacimiento">
+                <div *ngIf="!yacimiento.id">
+                    <h1 class="display-6">Crear yacimiento</h1>
+                    <p class="lead">Rellene el siguiente formulario para introducir un nuevo yacimiento en la base de datos</p>
+                </div>
+                <div *ngIf="yacimiento.id">
+                    <h1 class="display-4">Editar yacimiento</h1>
+                    <p class="lead">Rellene el siguiente formulario para para realizar los cambios en el yacimiento</p>
+                </div>
+        
+            <div class="col">
+                <div class="card-header header_card"></div>
+                <div class="card h-100 general">
+                <form #registro="ngForm">
+                    <!-- input nombre -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="nombre">Nombre*</label>
+                        <input type="text" id="nombre" class="inputs form-control" name="nombre" [(ngModel)]="yacimiento.nombre" required #nombre="ngModel" minlength="2" maxlength="20" />
                     </div>
-                    <div *ngIf="nombre.errors.minlength">    
-                        Debe tener al menos 2 caracteres
+        
+                    <!-- input lugar  -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="lugar">Lugar*</label>
+                        <input type="text" id="lugar" class="inputs form-control" name="lugar" [(ngModel)]="yacimiento.lugar" required #lugarY="ngModel" minlength="2" maxlength="25"/>
                     </div>
+        
+                    <!-- input epoca  -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="epoca">Época</label>
+                        <input type="text" id="epoca" class="inputs form-control" name="epoca" [(ngModel)]="yacimiento.epoca"/>
+                    </div>
+                    <!--Lista de errores-->
+                    <ul class="alert alert-danger" *ngIf="errores?.length > 0" >
+                        <li *ngFor="let err of errores">
+                            {{ err }}
+                        </li>
+                    </ul>
+                    <!-- Botones-->
+                    <div class="button_container">
+                        <p>* campos obligatorios</p> 
+                        <div class="button_group">
+                            <!-- Botón editar o eliminar -->
+                            <button type="submit" name="button" class="btn btn-block button" (click)="crear()"
+                            *ngIf="!yacimiento.id else elseBlock" >Crear</button>
+                            <ng-template #elseBlock>
+                                <button type="submit" name="button" class="btn btn-block button" (click)="update()">Editar</button>
+                            </ng-template>
+                            <!--botón atrás-->
+                            <button name="button" class="btn login_btn button" [routerLink]= "['/piezas/yacimientos']">Atrás</button>
+                        </div>
+                    </div>  
+                </form>
+                </div>
                 </div>
             </div>
-
-            <!-- input lugar  -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="lugar">Lugar*</label>
-                <input type="text" id="lugar" class="form-control" name="lugar" [(ngModel)]="yacimiento.lugar" required #lugarY="ngModel" minlength="2" maxlength="25"/>
-                <div class="alert alert-danger" *ngIf="lugarY.invalid && (lugarY.dirty || lugarY.touched)">
-                    <div *ngIf="lugarY.errors.required">    
-                        Campo obligatorio
-                    </div>
-                    <div *ngIf="lugarY.errors.minlength">    
-                        Debe tener al menos 2 caracteres
-                    </div>
-                </div>
-            </div>
-
-            <!-- input epoca  -->
-            <div class="form-outline mb-4">
-                <label class="form-label" for="epoca">Época</label>
-                <input type="text" id="epoca" class="form-control" name="epoca" [(ngModel)]="yacimiento.epoca"/>
-            </div>
-            <!--Lista de errores-->
-            <ul class="alert alert-danger" *ngIf="errores?.length > 0" >
-                <li *ngFor="let err of errores">
-                    {{ err }}
-                </li>
-            </ul>
-            <!-- Botones-->
-            <div class="buttonContainer">
-                <div>
-                    <!-- Botón editar o eliminar -->
-                    <button type="submit" name="button" class="btn btn-primary btn-block boton" (click)="crear()"
-                    *ngIf="!yacimiento.id else elseBlock" [disabled]="!registro.form.valid">Crear</button>
-                    <ng-template #elseBlock>
-                        <button type="submit" name="button" class="btn btn-primary btn-block boton" (click)="update()">Editar</button>
-                    </ng-template>
-                     <!--botón atrás-->
-                     <button name="button" class="btn btn-primary login_btn boton" [routerLink]= "['/piezas/yacimientos']">Atrás</button>
-                </div>
-                <p>* campos obligatorios</p>  
-            </div>  
-        </form>
-        </div>
         </div>
     </div>
-</div>
+</main>
 
+<!--componente footer-->
 <app-footer></app-footer>
 
 

@@ -6,6 +6,7 @@ import { YacimientoService } from 'src/app/servicios/yacimiento.service';
 import { Yacimiento } from 'src/app/yacimiento/yacimiento';
 import { ModalService } from '../../detalle/modal.service';
 import { Pieza } from '../../pieza';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-form',
@@ -32,6 +33,14 @@ export class FormComponent implements OnInit {
   }
 
   buscar(): void{
+    if(this.pieza.campain == null && this.pieza.yacimiento == null && this.pieza.fecha == null && this.pieza.util == null && this.pieza.material == null){
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: '¡Debe introducir algún campo de búsqueda!'
+      })
+      return;
+    }
     this.piezaService.buscaPiezas(this.pieza).subscribe(
       data=>{
         this.piezas = data;

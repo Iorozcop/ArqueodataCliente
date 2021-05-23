@@ -34,12 +34,12 @@ import localeES from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { PaginadorComponent } from './paginador/paginador.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 registerLocaleData(localeES,'es');
 
 
 const routes: Routes =[
   {path:'', redirectTo: '/login', pathMatch: 'full'},
-  // {path:'notfound', component: NotFoundComponent},
   {path:'inicio', component: InicioComponent, canActivate:[AuthGuard]},
   {path:'login', component: LoginComponent},
   //canActivate:[AuthGuard] comprueba que esté logueado antes de redirigir a la ruta
@@ -48,6 +48,7 @@ const routes: Routes =[
   {path:'usuarios', component: UsuarioComponent, canActivate:[AuthGuard]},
   {path:'usuarios/page/:page', component: UsuarioComponent, canActivate:[AuthGuard]},
   {path:'registro', component: RegistroComponent},
+  {path:'editar/:id', component: EditarUsuarioComponent, canActivate:[AuthGuard]},
   {path:'registro/:id', component: RegistroComponent, canActivate:[AuthGuard]},
   {path:'crear', component: CrearPiezaComponent, canActivate:[AuthGuard]},
   {path:'crear/:id', component: CrearPiezaComponent, canActivate:[AuthGuard]},
@@ -82,6 +83,7 @@ const routes: Routes =[
     FormComponent,
     PaginadorComponent,
     NotFoundComponent,
+    EditarUsuarioComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,92 @@
-.content_form{
-    padding: 10px;
+.fondo {
+    position:relative;
+    background-image: url(../../../../assets/img/fondoGeneral.jpg)!important;
+    background-repeat: repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: auto;
+    min-height: 100vh;
+    background-position: 0 0;
 }
 
-.botones{
+.general_container{
+    position: relative;
+    padding: 30px;
+}
+
+.container_form_general{
+    background-color:#fffaf0;
+    padding: 20px 20px 30px 20px;
+    box-shadow: 3px 1px 7px 2px #0a0a0a25;
+}
+
+.container_form{
+    background-color: #fcf2dc;
+    padding: 30px;
+}
+
+.input_form{
+    box-shadow: none !important;
+}
+
+.btn_group{
     display: flex;
     justify-content: flex-end;
 }
+
 .btn_form{
-    margin: 5px
+    margin: 5px;
+    background-color:#eecd86 ;
+    color:black;
+    box-shadow: 2px 1px 4px 0px #0a0a0a25;
+}
+
+.btn_ver{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 0px auto!important;
+    padding: 10px;
+}
+
+.table_title{
+    margin: 20px 20px 20px 0px;
+}
+
+.table_busqueda{
+    background-color: #fcf2dc;
+    text-align: center;
+}
+
+.cabecera-tabla{
+    margin: 5px;
+}
+
+/* media tablet */
+
+@media (max-width: 768px){
+    .card-body{
+        padding:0px;
+    }
+}
+
+/* media móvil */
+
+@media (max-width: 360px){
+    .general_container{
+        padding: 20px 10px;
+    }
+
+    .text_form_search{
+        font-size: 16px;
+    }
+
+    .container_form{
+        padding: 15px;
+    }
+
+    .table_title{
+        margin: 0px 0px 20px 0px;
+        font-size: 15px;
+    }
 }

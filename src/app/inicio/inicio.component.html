@@ -1,16 +1,62 @@
+<!--componente cabecera-->
 <app-header></app-header>
 
-<div class="fondo">
-    <div class="card general">
-        <div class="container">
-            <img class="logoInicio" src="../../assets/img/logoarqueodata.jpg" alt="logo arqueodata">
-            <h1 class="display-4">Bienvenid@ a arqueodata</h1>
-            <p class="lead">Arqueodata es una aplicación para gestionar piezas arqueológicas.
-                Puedes navegar a través de su menú por las diferentes opciones.
-            </p>
+<!--contenido inicio-->
+<main class="fondo">
+    <div class="general jumbotron jumbotron-fluid">
+        <div class="container_inicio">
+            <figure>
+                <img class="img_header" src="../../assets/img/piezas2.png" alt="logo arqueodata">
+            </figure>
+            <hr />
+            <div *ngIf="authService.hasRole('ROLE_ADMIN')" class class="container_text_general">
+                <!--bloque texto bienvenida-->
+                <p class="display-6">Bienvenid@ {{authService.usuario.username}}</p>
+                <p class="lead text_inicio">Arqueodata es una herramienta de trabajo que ayuda a agilizar la gestión 
+                    de las piezas encontradas durante la campaña de excavación.
+                    Puedes navegar a través de su menú por las diferentes opciones.
+                </p>
+                <p class="lead text_inicio">En la sección "usuarios" encontrarás todos los usuarios registrados en la base de datos.
+                    Podrás gestionarlos mediante los botones de eliminar y editar.
+                </p>
+                <p class="lead text_inicio">En la sección "piezas", al igual que en usuarios, podrás gestionar todas las piezas 
+                    almacenadas en la base de datos.
+                    Además de crear, eliminar y editar, dentro de esta última funcionalidad
+                    podrás subir una imagen de la pieza si así lo deseas.
+                    Y realizar búsqueda de piezas por múltiples campos pulsando en el botón "buscar".
+                </p>
+                <p class="lead text_inicio"> Por último en el apartado de “campañas” y en el de “yacimientos” encontrarás todas las camapanñas y yacimientos registrados en el sistema,
+                    y al igual que los anteriores, podrás gestionarlos haciendo uso de sus apartados crear, editar y eliminar. 
+                </p>
+                <!--logo-->
+                <figure class="container_logo">
+                    <img class="img_logo" src="../../assets/img/logoAlargado.png" alt="ilustración de piezas">
+                </figure>
+            </div>
+            <div *ngIf="authService.hasRole('ROLE_USER') && !authService.hasRole('ROLE_ADMIN')" class class="container_text_general">
+                <!--bloque texto bienvenida-->
+                <p class="display-6">Bienvenid@ {{authService.usuario.username}}</p>
+                <p class="lead text_inicio">Arqueodata es una herramienta de trabajo que ayuda a agilizar la gestión 
+                    de las piezas encontradas durante la campaña de excavación.
+                    Puedes navegar a través de su menú por las diferentes opciones.
+                </p>
+                <p class="lead text_inicio">En la sección "piezas", podrás gestionar todas las piezas 
+                    almacenadas en la base de datos.
+                    Además de crear y editar, dentro de esta última funcionalidad
+                    podrás subir una imagen de la pieza si así lo deseas.
+                    También podrás realizar búsquedas de piezas por múltiples campos pulsando en el botón "buscar".
+                </p>
+                <p class="lead text_inicio"> Por último en el apartado de “campañas” y en el de “yacimientos” encontrarás todas las camapanñas 
+                    y yacimientos registrados en el sistema.
+                </p>
+                <!--logo-->
+                <figure class="container_logo">
+                    <img class="img_logo" src="../../assets/img/logoAlargado.png" alt="ilustración de piezas">
+                </figure>
+            </div>
         </div>
-
     </div>
-</div>
+</main>
 
+<!--componente footer-->
 <app-footer></app-footer>

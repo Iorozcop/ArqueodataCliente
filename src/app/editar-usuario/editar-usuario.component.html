@@ -1,0 +1,68 @@
+<!--componente cabecera-->
+<app-header></app-header>
+
+<!--contenido-->
+<main class="fondo">
+    <div class="general_container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="user_container">
+                <figure class="header_container">
+                    <img class="img_header" src="../../assets/img/piezas2.png" alt="logo arqueodata">
+                </figure>
+                <hr />
+                <div class="card mb-3 container_form">
+                    <div class="card-header cabecera_card">
+                        <h1 class="display-6">Editar usuario</h1>
+                    </div>
+                    <div class="card-body text-primary body_card">
+                        <form class="form" #registro="ngForm">
+
+                            <!--nombre-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="icon fas fa-user"></i></span>
+                                </div>
+                                <input type="text" name="" class="form-control input_user" placeholder="nombre" [(ngModel)]="usuario.username" name="nombre" minlength="2" maxlength="20" required> 
+                            </div>
+
+                            <!--email-->
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="icon fas fa-envelope"></i></span>
+                                </div>
+                                <input type="email" name="email" class="form-control input_email" placeholder="email"[(ngModel)]="usuario.email" required>
+                            </div>
+
+                            <!--pass-->
+                            <div class="input-group mb-2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text"><i class="icon fas fa-key"></i></span>
+                                </div>
+                                <input type="password" name="pass" class="form-control input_pass" placeholder="contraseña" [(ngModel)]="usuario.password" required>
+                            </div>
+
+                            <!--listado de errores-->
+                            <ul class="alert alert-danger" *ngIf="errores?.length > 0" >
+                                <li class="listError" *ngFor="let err of errores">
+                                    {{ err }}
+                                </li>
+                            </ul>
+
+                            <!--botón-->
+                            <div class="buttons_group">
+                                <button type="submit" name="button" class="btn button" (click)="update()">Editar</button>
+                                <button name="button" class="btn button" [routerLink]= "['/usuarios']">Atrás</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>   
+
+
+
+<!--componente footer-->
+<app-footer></app-footer>
