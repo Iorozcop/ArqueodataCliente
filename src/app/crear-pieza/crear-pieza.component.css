@@ -46,6 +46,10 @@ select:required{
     display: flex;
 }
 
+.li_error{
+    margin-left: 10px;
+}
+
 .boton_cargar{
     background-color:#eecd86;
     color: black;

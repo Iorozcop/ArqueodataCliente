@@ -51,7 +51,7 @@
 }
 
 .header_card{
-    background-color: #eecd86cc;
+    background-color: #f1d79e;
 }
 
 .shadow_card{
@@ -66,8 +66,8 @@
 
 .button_icon{
     margin:20px 5px 0px 0px;
-    color: #cf9c4e;
-    background-color:#fffaf0;
+    color: rgb(48, 48, 48);
+    background-color:#eecd86;
 }
 
 .container_paginador{

@@ -62,6 +62,10 @@
     box-shadow: none !important;
 }
 
+.li_error{
+    margin-left: 10px;
+}
+
 .buttons_group{
     display: flex;
     justify-content: flex-end;

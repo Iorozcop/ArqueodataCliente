@@ -35,10 +35,6 @@ export class CampainComponent implements OnInit {
         this.paginador = response;
       });
     })
-
-    // this.campainService.getCampains().subscribe(
-    //   campains => this.campains = campains
-    // );
   }
 
   delete(campain:Campain):void{
