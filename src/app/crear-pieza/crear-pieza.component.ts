@@ -136,5 +136,4 @@ export class CrearPiezaComponent implements OnInit {
   compararCampain(c1:Campain, c2:Campain):boolean{
     return c1 == null || c2 == null ? false : c1.id === c2.id;
   }
-
 }

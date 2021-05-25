@@ -23,7 +23,6 @@ export class YacimientoComponent implements OnInit {
   ngOnInit(): void {
 
     this.activatedRoute.paramMap.subscribe(params=>{
-      //poniendo el + convertimos un string a number
       let page:number = +params.get('page');
       
       if(!page){
@@ -36,10 +35,6 @@ export class YacimientoComponent implements OnInit {
         this.paginador = response;
       });
     })
-
-      // this.yacimientoService.getYacimientos().subscribe(
-      //   yacimientos => this.yacimientos = yacimientos
-      // );
   }
 
   delete(yacimiento:Yacimiento):void{
@@ -62,12 +57,11 @@ export class YacimientoComponent implements OnInit {
             '¡Eliminado!',
             'El yacimiento ha sido eliminado',
             'success'
-        )
+            )
           }
         )
         
       }
     })
   }
-
 }

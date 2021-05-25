@@ -22,7 +22,6 @@ export class YacimientoService {
     private agregarAuthHeader(){
       let token = this.authService.token;
       if(token != null){
-        //el método append sirve para añadir atributo
         return this.httpHeaders.append('Authorization','Bearer ' + token);
       }
       return this.httpHeaders;
@@ -52,7 +51,6 @@ export class YacimientoService {
           title: e.error.mensaje,
           text: 'Puede que el yacimiento ya existan en la BBDD'
         })
-        //throwError es para retornar el error pero tipo observable
         return throwError(e);
       })
     )

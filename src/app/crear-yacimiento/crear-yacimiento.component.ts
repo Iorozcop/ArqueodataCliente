@@ -62,5 +62,4 @@ export class CrearYacimientoComponent implements OnInit {
       }
     )
   }
-
 }

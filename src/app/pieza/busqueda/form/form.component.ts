@@ -24,7 +24,7 @@ export class FormComponent implements OnInit {
   constructor(private piezaService: PiezasService,
               private campainService: CampainService,
               private yacimientoService: YacimientoService,
-              private modalService: ModalService) {}
+              public modalService: ModalService) {}
   
 
   ngOnInit(): void {

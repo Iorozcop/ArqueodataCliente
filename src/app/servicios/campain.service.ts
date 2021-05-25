@@ -41,7 +41,6 @@ export class CampainService {
           title: e.error.mensaje,
           text: 'Puede que la campaña ya exista en la BBDD'
         })
-        //throwError es para retornar el error pero tipo observable
         return throwError(e);
       })
     )
@@ -97,5 +96,4 @@ export class CampainService {
       })
     )
   }
-
 }

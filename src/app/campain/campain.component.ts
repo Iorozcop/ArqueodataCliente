@@ -22,7 +22,6 @@ export class CampainComponent implements OnInit {
   
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params=>{
-      //poniendo el + convertimos un string a number
       let page:number = +params.get('page');
       
       if(!page){
@@ -61,5 +60,4 @@ export class CampainComponent implements OnInit {
         )}
     })
   }
-
 }

@@ -42,7 +42,6 @@ const routes: Routes =[
   {path:'', redirectTo: '/login', pathMatch: 'full'},
   {path:'inicio', component: InicioComponent, canActivate:[AuthGuard]},
   {path:'login', component: LoginComponent},
-  //canActivate:[AuthGuard] comprueba que esté logueado antes de redirigir a la ruta
   {path:'piezas', component: PiezaComponent, canActivate:[AuthGuard]},
   {path:'piezas/page/:page', component: PiezaComponent, canActivate:[AuthGuard]},
   {path:'usuarios', component: UsuarioComponent, canActivate:[AuthGuard]},

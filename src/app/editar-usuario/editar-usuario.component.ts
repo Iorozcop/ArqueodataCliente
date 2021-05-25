@@ -11,18 +11,18 @@ import { Usuario } from '../usuario/usuario';
 })
 export class EditarUsuarioComponent implements OnInit {
 
-  //se ponen public porque sino no podemos acceder desde la vista
   public usuario: Usuario = new Usuario();
   public errores: string[];
   
   constructor(private usuarioService :UsuarioService,
-    private router:Router,
-    private activateRoute: ActivatedRoute) { }
+              private router:Router,
+              private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.cargarUsuario();
   }
 
+  //carga todos los usuarios
   cargarUsuario():void{
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
@@ -34,6 +34,7 @@ export class EditarUsuarioComponent implements OnInit {
     })
   }
 
+  //edita usuario
   update():void{
     this.usuarioService.update(this.usuario).subscribe(
       usuario => {
@@ -47,9 +48,7 @@ export class EditarUsuarioComponent implements OnInit {
       err => {
         this.errores = err.error.errors as string[];
         console.error("codigo del error: " + err.status);
-        // console.error(err.console.error.errors);
       }
     )
   }
-
 }

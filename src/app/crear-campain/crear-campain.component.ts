@@ -50,5 +50,4 @@ export class CrearCampainComponent implements OnInit {
       }
     )
   }
-
 }

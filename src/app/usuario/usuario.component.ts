@@ -23,7 +23,6 @@ export class UsuarioComponent implements OnInit {
   ngOnInit(): void {
   
     this.activatedRoute.paramMap.subscribe(params=>{
-      //poniendo el + convertimos un string a number
       let page:number = +params.get('page');
       
       if(!page){
@@ -66,5 +65,4 @@ export class UsuarioComponent implements OnInit {
       }
     })
   }
-
 }

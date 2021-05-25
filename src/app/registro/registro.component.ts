@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 })
 export class RegistroComponent implements OnInit {
 
-  //se ponen public porque sino no podemos acceder desde la vista
   public usuario: Usuario = new Usuario();
   public errores: string[];
 

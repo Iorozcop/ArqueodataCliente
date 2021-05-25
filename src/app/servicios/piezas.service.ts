@@ -55,7 +55,6 @@ export class PiezasService {
           title: e.error.mensaje,
           text: 'Error'
         })
-        //throwError es para retornar el error pero tipo observable
         return throwError(e);
       })
     )
@@ -105,7 +104,6 @@ export class PiezasService {
   }
 
   //busca piezas
-
   buscaPiezas(pieza: Pieza): Observable<any[]>{
     return this.http.post<any[]>(`${this.urlEndPoint}/search`,pieza).pipe(
       catchError(e => {
@@ -122,5 +120,4 @@ export class PiezasService {
       })
     );
   }
-
 }

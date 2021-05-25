@@ -21,14 +21,14 @@ export class PiezaComponent implements OnInit {
   
   constructor(private piezaService: PiezasService,
               public authService: AutenticacionService,
-              private modalService: ModalService,
+              public modalService: ModalService,
               private activatedRoute: ActivatedRoute
               ) { }
 
   ngOnInit(): void {
 
     this.activatedRoute.paramMap.subscribe(params=>{
-      //poniendo el + convertimos un string a number
+      
       let page:number = +params.get('page');
       
       if(!page){

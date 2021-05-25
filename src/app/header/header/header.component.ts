@@ -10,16 +10,13 @@ import { AutenticacionService } from '../../servicios/autenticacion.service';
 })
 export class HeaderComponent implements OnInit {
 
-  //es public para que pueda ser llamado desde la vista.
   constructor(public authService: AutenticacionService,
               private router:Router,) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   logout():void{
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
 }
