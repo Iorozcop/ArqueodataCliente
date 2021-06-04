@@ -6,11 +6,11 @@
 <detalle-pieza *ngIf= "piezaSeleccionada" [pieza]= "piezaSeleccionada"></detalle-pieza>
 
 <!--listado piezas-->
-<main class="fondo">
+<main class="fund">
   <div class="general_container jumbotron jumbotron-fluid">
     <div class="piezas_container">
       <figure class="container_img_header">
-        <img class="img_header" src="../../assets/img/cabecera_camp.png" alt="ilustración de usuarios">
+        <img class="img_header" src="./assets/img/cabecera_camp.png" alt="ilustración de usuarios">
       </figure>
       <hr />
       <div class="header_title_container"> 
@@ -24,8 +24,8 @@
         <!--grupo de cards-->
         <div class="col" *ngFor= "let pieza of piezas">
           <div class="card h-100 shadow_card">
-              <img class="h-40" *ngIf="pieza?.foto" src="http://localhost:8449/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
-              <img *ngIf="!pieza?.foto" src="http://localhost:8449/images/logoCard.jpg" class="card-img-top" alt="sin foto">
+              <img class="h-40" *ngIf="pieza?.foto" src="{{urlEndPoint}}/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
+              <img *ngIf="!pieza?.foto" src="{{urlEndPoint}}/images/logoCard.jpg" class="card-img-top" alt="sin foto">
             <div class="card-header header_card">
               <h5 class="card-title">{{pieza.yacimiento.nombre}}</h5>
               <h6 class="card-subtitle mb-2 text-muted">Campaña: {{pieza.campain.campain}}</h6>
@@ -33,6 +33,8 @@
             <div class="card-body">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">Fecha hallazgo: <small>{{pieza.fecha | date:"dd-MM-yyyy"}}</small></li>
+                <li class="list-group-item">Útil: <small>{{pieza.util}}</small></li>
+                <li class="list-group-item">Material: <small>{{pieza.material}}</small></li>
                 <li class="list-group-item">Zona: <small>{{pieza.zona}}</small></li>
                 <div class="button_group">
                   <button *ngIf="authService.hasRole('ROLE_ADMIN')" type="button" name="button" class="btn btn-outline-secondary button_icon" (click)="delete(pieza)"><i class="fas fa-trash"></i></button>

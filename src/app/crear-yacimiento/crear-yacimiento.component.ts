@@ -22,6 +22,7 @@ export class CrearYacimientoComponent implements OnInit {
     this.cargarYacimiento();
   }
 
+  // Carga yacimientos
   cargarYacimiento():void{
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
@@ -33,6 +34,7 @@ export class CrearYacimientoComponent implements OnInit {
     })
   }
 
+  // Crea yacimientos
   public crear():void{
     this.yacimientoService.create(this.yacimiento).subscribe(
       response => {this.router.navigate(['/piezas/yacimientos'])
@@ -45,6 +47,7 @@ export class CrearYacimientoComponent implements OnInit {
     )
   }
 
+  // Edita yacimientos
   update():void{
     this.yacimientoService.update(this.yacimiento).subscribe(
       yacimiento => {

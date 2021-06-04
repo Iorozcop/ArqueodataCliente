@@ -5,29 +5,31 @@ import { Campain } from '../campain/campain';
 import { Router } from '@angular/router';
 import { catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2'
+import { URL_BACK } from 'src/config/config';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class CampainService {
-    private urlEndPoint:string = 'http://localhost:8449/api/piezas/campains';
+
+    private urlEndPoint:string = URL_BACK + '/api/piezas/campains'
 
     constructor(private http:HttpClient,
                 private router: Router
                 ) { }
 
-  //trae todas las campañas registradas con paginación
+  // Trae todas las campañas registradas con paginación
   getCampainsP(page:number): Observable<any> {
     return this.http.get<any>(this.urlEndPoint + '/page/' + page);
   }
 
-  //trae todas las campañas registradas
+  // Trae todas las campañas registradas
   getCampains(): Observable<Campain[]> {
     return this.http.get<Campain[]>(this.urlEndPoint);
   }
 
-  //crea una nueva campaña
+  // Crea una nueva campaña
   create(campain:Campain) :Observable<Campain>{
     return this.http.post<Campain>(this.urlEndPoint, campain).pipe(
       catchError(e => {
@@ -46,7 +48,7 @@ export class CampainService {
     )
   }
 
-  //trae campañas por id
+  // Trae campañas por id
   getCampain(id:number):Observable<Campain>{
     return this.http.get<Campain>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
@@ -64,7 +66,7 @@ export class CampainService {
     )
   }
 
-  //edita una campaña
+  // Edita una campaña
   update(campain: Campain) :Observable<any>{
     return this.http.put<any>(`${this.urlEndPoint}/${campain.id}`, campain).pipe(
       catchError(e => {
@@ -82,7 +84,7 @@ export class CampainService {
     )
   }
 
-  //elimina una campaña
+  // Elimina una campaña
   delete(id: number):Observable<Campain>{
     return this.http.delete<Campain>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {

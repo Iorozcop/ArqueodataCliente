@@ -1,3 +1,4 @@
+<!--Contenido componente paginador-->
 <ul *ngIf="paginas.length >0 && entidad.length>0" class="pagination ul_paginacion">
     <li [ngClass]="paginador.first?'disabled page-item': 'page-item'">
         <a class="page-link pag" [routerLink]="['/'+entidad+'/page', 0]">&laquo;&laquo;</a>

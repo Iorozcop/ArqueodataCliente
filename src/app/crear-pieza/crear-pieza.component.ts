@@ -31,13 +31,13 @@ export class CrearPiezaComponent implements OnInit {
               private activateRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // Llamada a cargar campañas, yacimientos y piezas
     this.campainService.getCampains().subscribe(campains => this.campains = campains);
     this.yacimientoService.getYacimientos().subscribe(yacimientos => this.yacimientos = yacimientos);
     this.cargarPiezas();
   }
 
-  // carga las piezas existentes en la BBDD
-
+  // Carga las piezas existentes en la BBDD
   cargarPiezas():void{
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
@@ -49,8 +49,7 @@ export class CrearPiezaComponent implements OnInit {
     })
   }
 
-  // crea una pieza
-
+  // Crea una pieza
   crear(): void{
     this.piezaService.create(this.pieza).subscribe(
       response => {
@@ -64,8 +63,7 @@ export class CrearPiezaComponent implements OnInit {
     )
   }
 
-  // edita una pieza
-
+  // Edita una pieza
   update():void{
     if(this.isSelected){
       Swal.fire({
@@ -92,8 +90,7 @@ export class CrearPiezaComponent implements OnInit {
     }
   }
 
-  // selecciona una foto para subirla posteriormente
-
+  // Selecciona una foto para subirla posteriormente
   seleccionarFoto(event:any) {
     this.fotoSeleccionada = event.target.files[0];
     this.isSelected = true;
@@ -107,8 +104,7 @@ export class CrearPiezaComponent implements OnInit {
     }
   }
 
-  // sube una foto
-
+  // Sube una foto
   subirFoto(){
     if (!this.fotoSeleccionada) {
       Swal.fire({
@@ -125,14 +121,12 @@ export class CrearPiezaComponent implements OnInit {
     }
   }
 
-  // compara yacimientos
-
+  // Compara yacimientos
   compararYacimiento(y1:Yacimiento, y2:Yacimiento):boolean{
     return y1 == null || y2 == null ? false : y1.id === y2.id;
   }
 
-  // compara campañas
-  
+  // Compara campañas
   compararCampain(c1:Campain, c2:Campain):boolean{
     return c1 == null || c2 == null ? false : c1.id === c2.id;
   }

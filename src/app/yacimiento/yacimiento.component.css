@@ -1,4 +1,4 @@
-.fondo {
+.fund {
     position:relative;
     background-image: url(../../assets/img/fondoGeneral.jpg)!important;
     background-repeat: repeat;
@@ -105,6 +105,14 @@
 /* media móvil */
 
 @media (max-width: 360px){
+    
+    .general_container{
+        padding: 20px 10px; 
+    }
+
+    .container_yacimientos_general{
+        padding: 10px;
+    }
     
     .container_yacimientos{
         margin:0px;

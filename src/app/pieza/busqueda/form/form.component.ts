@@ -28,10 +28,12 @@ export class FormComponent implements OnInit {
   
 
   ngOnInit(): void {
+    // Llamada para traer campañas y yacimientos
     this.campainService.getCampains().subscribe(campains => this.campains = campains);
     this.yacimientoService.getYacimientos().subscribe(yacimientos => this.yacimientos = yacimientos);
   }
 
+  // Busca piezas
   buscar(): void{
     if(this.pieza.campain == null && this.pieza.yacimiento == null && this.pieza.fecha == null && this.pieza.util == null && this.pieza.material == null){
       Swal.fire({
@@ -53,6 +55,7 @@ export class FormComponent implements OnInit {
     )
   }
 
+  // Abre modal
   abrirModal(pieza:Pieza){
     this.piezaSeleccionada = pieza;
     this.modalService.abrirModal();

@@ -2,12 +2,12 @@
 <app-header></app-header>
 
 <!--contenido-->
-<main class="fondo">
+<main class="fund">
     <div class="general_container">
         <div class="jumbotron jumbotron-fluid">
             <div class="user_container">
                 <figure class="header_container">
-                    <img class="img_header" src="../../assets/img/piezas2.png" alt="logo arqueodata">
+                    <img class="img_header" src="./assets/img/piezas2.png" alt="logo arqueodata">
                 </figure>
                 <hr />
                 <div class="card mb-3 container_form">
@@ -30,7 +30,7 @@
                                 <div class="input-group-append">
                                     <span class="input-group-text"><i class="icon fas fa-envelope"></i></span>
                                 </div>
-                                <input type="email" name="email" class="form-control input_email" placeholder="email"[(ngModel)]="usuario.email" required>
+                                <input type="email" name="email" class="form-control input_email" placeholder="email"[(ngModel)]="usuario.email" autocomplete="off" required>
                             </div>
 
                             <!--pass-->
@@ -56,13 +56,10 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </main>   
-
-
 
 <!--componente footer-->
 <app-footer></app-footer>

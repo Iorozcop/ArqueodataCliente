@@ -35,10 +35,6 @@
     box-shadow: none !important;
 }
 
-input:required {
-    outline: 1px solid tomato;
-}
-
 .button_container{
     display: flex;
     justify-content: space-between;

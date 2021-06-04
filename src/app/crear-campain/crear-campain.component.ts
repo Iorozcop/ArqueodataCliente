@@ -21,6 +21,7 @@ export class CrearCampainComponent implements OnInit {
     this.cargarCampain();
   }
 
+  // Carga todas las campañas almacenadas en BBDD
   cargarCampain():void{
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
@@ -32,12 +33,14 @@ export class CrearCampainComponent implements OnInit {
     })
   }
 
+  // Crea campaña
   public crear(): void{
     this.campainService.create(this.campain).subscribe(
       response => this.router.navigate(['/piezas/campains'])
     )
   }
 
+  // Edita campaña
   update():void{
     this.campainService.update(this.campain).subscribe(
       campain => {

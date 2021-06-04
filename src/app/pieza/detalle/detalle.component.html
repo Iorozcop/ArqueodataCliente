@@ -1,4 +1,4 @@
-
+<!--Contenido del componente modal-->
 <div *ngIf="modalService.modal" class="open_modal">
     <div class="modal general_container" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -10,10 +10,9 @@
                 <div class="modal-body">
                     <div class="card container_card">
                         <div *ngIf="pieza" class="card h-100">
-                            <img *ngIf="pieza?.foto" src="http://localhost:8449/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
-                            <img *ngIf="!pieza?.foto" src="http://localhost:8449/images/logocard.jpg" class="card-img-top" alt="sin foto">
+                            <img *ngIf="pieza?.foto" src="{{urlEndPoint}}/api/uploads/img/{{pieza.foto}}" alt="{{pieza.util}}">
+                            <img *ngIf="!pieza?.foto" src="{{urlEndPoint}}/images/logoCard.jpg" class="card-img-top" alt="sin foto">
                             <div class="card-body">
-                                <!--la ! es para que no salte un error, le estamos diciendo que eso no puede ser nulo y que no se queje-->
                                 <div class="card-header header_card">
                                     <h5 class="card-title">{{pieza.yacimiento!.nombre}}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{pieza.campain!.campain}}</h6>

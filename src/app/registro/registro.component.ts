@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../usuario/usuario';
 import { UsuarioService } from '../servicios/usuario.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-
 
 @Component({
   selector: 'app-registro',
@@ -16,24 +15,11 @@ export class RegistroComponent implements OnInit {
   public errores: string[];
 
   constructor(private usuarioService :UsuarioService,
-              private router:Router,
-              private activateRoute: ActivatedRoute ) { }
+              private router:Router) { }
 
-  ngOnInit(): void {
-    this.cargarUsuario();
-  }
+  ngOnInit(): void {}
 
-  cargarUsuario():void{
-    this.activateRoute.params.subscribe(params => {
-      let id = params['id'];
-      if(id){
-        this.usuarioService.getUsuario(id).subscribe(
-          (usuario) => this.usuario = usuario
-        )
-      }
-    })
-  }
-
+  // Crea usuarios
   crear() :void {
     this.usuarioService.create(this.usuario).subscribe(
       json => { 
@@ -53,24 +39,6 @@ export class RegistroComponent implements OnInit {
             text: 'Puede que el nombre o el email ya existan en la BBDD'
           })
         }
-        this.errores = err.error.errors as string[];
-        console.error("codigo del error: " + err.status);
-        console.error(err.console.error.errors);
-      }
-    )
-  }
-
-  update():void{
-    this.usuarioService.update(this.usuario).subscribe(
-      usuario => {
-        this.router.navigate(['/usuarios'])
-        Swal.fire(
-          'Usuario editado',
-          `Usuario editado con éxito`,
-          'success'
-        )
-      },
-      err => {
         this.errores = err.error.errors as string[];
         console.error("codigo del error: " + err.status);
         console.error(err.console.error.errors);

@@ -6,38 +6,40 @@ import { AutenticacionService } from './autenticacion.service';
 import { Router } from '@angular/router';
 import { catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2'
+import { URL_BACK } from 'src/config/config';
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class YacimientoService {
-    private urlEndPoint:string = 'http://localhost:8449/api/piezas/yacimientos';
-    private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  private urlEndPoint:string = URL_BACK + '/api/piezas/yacimientos';
+  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
-    constructor(private http:HttpClient, 
-                private authService: AutenticacionService,
-                private router: Router,) { }
+  constructor(private http:HttpClient, 
+              private authService: AutenticacionService,
+              private router: Router,) { }
 
-    private agregarAuthHeader(){
-      let token = this.authService.token;
-      if(token != null){
-        return this.httpHeaders.append('Authorization','Bearer ' + token);
-      }
-      return this.httpHeaders;
+  // Agrega cabecera
+  private agregarAuthHeader(){
+    let token = this.authService.token;
+    if(token != null){
+      return this.httpHeaders.append('Authorization','Bearer ' + token);
     }
+    return this.httpHeaders;
+  }
 
-  //trae todos los yacimientos registrados
+  // Trae todos los yacimientos registrados
   getYacimientos(): Observable<Yacimiento[]> {
     return this.http.get<Yacimiento[]>(this.urlEndPoint);
   }
 
-  //trae todos los yacimientos registrados con paginación
+  // Trae todos los yacimientos registrados con paginación
   getYacimientosP(page:number): Observable<any> {
     return this.http.get<any>(this.urlEndPoint + '/page/' + page);
   }
 
-  //crea un nuevo yacimiento
+  // Crea un nuevo yacimiento
   create(yacimiento:Yacimiento) :Observable<Yacimiento>{
     return this.http.post<Yacimiento>(this.urlEndPoint, yacimiento, {headers:this.agregarAuthHeader()}).pipe(
       catchError(e => {
@@ -56,7 +58,7 @@ export class YacimientoService {
     )
   }
 
-  //trae yacimiento por id
+  // Trae yacimiento por id
   getYacimiento(id:number):Observable<Yacimiento>{
     return this.http.get<Yacimiento>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
@@ -74,7 +76,7 @@ export class YacimientoService {
     )
   }
 
-  //edita un usuario
+  // Edita un usuario
   update(yacimiento: Yacimiento) :Observable<any>{
     return this.http.put<any>(`${this.urlEndPoint}/${yacimiento.id}`, yacimiento).pipe(
       catchError(e => {
@@ -92,7 +94,7 @@ export class YacimientoService {
     )
   }
 
-  //elimina un yacimiento
+  // Elimina un yacimiento
   delete(id: number):Observable<Yacimiento>{
     return this.http.delete<Yacimiento>(`${this.urlEndPoint}/${id}`, {headers:this.agregarAuthHeader()}).pipe(
       catchError(e => {

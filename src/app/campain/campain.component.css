@@ -101,7 +101,7 @@
     }
 
     .figure{
-        width: 80%;
+        width: 70%;
     }
 
     .container_card{
@@ -121,8 +121,16 @@
 
 @media (max-width: 360px){
 
+    .general_container{
+        padding: 20px 10px; 
+    }
+
     .container_card{
         margin: 0px;
+    }
+
+    .container_campain{
+        padding: 10px;
     }
 
     .figure{

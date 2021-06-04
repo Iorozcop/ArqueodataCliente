@@ -74,10 +74,8 @@
                                 <p>Coordenadas*: </p>
                                 <input type="number" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="x" name="x" class="input_pieza form-control coordinate" placeholder="Coordenadas X"
                                     [(ngModel)]="pieza.coordenadasX" required/>
-                                
                                 <input type="number" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="y" name="y" class="input_pieza form-control coordinate" placeholder="Coordenadas Y"
                                     [(ngModel)]="pieza.coordenadasY" required/>
-                                
                                 <input type="number" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" id="z" name="z" class="input_pieza form-control coordinate" placeholder="Coordenadas Z"
                                     [(ngModel)]="pieza.coordenadasZ" required/>
                             </div>

@@ -39,8 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
           this.router.navigate(['/piezas']);
         }
         return throwError(e);
-      }
-      )
+      })
     );
   }
 }

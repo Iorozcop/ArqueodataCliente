@@ -10,7 +10,6 @@ export class InicioComponent implements OnInit {
 
   constructor(public authService: AutenticacionService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

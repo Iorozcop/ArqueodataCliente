@@ -33,14 +33,6 @@
     box-shadow: none !important;
 }
 
-input:required {
-    outline: 1px solid tomato;
-}
-
-select:required{
-    outline: 1px solid tomato;
-}
-
 .upload_photo{
     align-items: flex-end;
     display: flex;

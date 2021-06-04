@@ -1,4 +1,4 @@
 export class Campain {
-    id!: number;
-    campain!: number;
+    id: number;
+    campain: number;
 }

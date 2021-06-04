@@ -5,6 +5,7 @@ import Swal from 'sweetalert2'
 import { AutenticacionService } from '../servicios/autenticacion.service';
 import { ModalService } from './detalle/modal.service';
 import { ActivatedRoute } from '@angular/router';
+import { URL_BACK } from 'src/config/config';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class PiezaComponent implements OnInit {
   piezaSeleccionada!: Pieza;
   paginador: any;
   entidad: string='piezas';
+  public urlEndPoint:string = URL_BACK;
   
   constructor(private piezaService: PiezasService,
               public authService: AutenticacionService,
@@ -43,6 +45,7 @@ export class PiezaComponent implements OnInit {
     })
   }
 
+  // Elimina pieza
   delete(pieza:Pieza):void{
     Swal.fire({
       title: '¿Estas seguro?',
@@ -70,6 +73,7 @@ export class PiezaComponent implements OnInit {
     })
   }
 
+  // Abre modal
   abrirModal(pieza:Pieza){
     this.piezaSeleccionada = pieza;
     this.modalService.abrirModal();

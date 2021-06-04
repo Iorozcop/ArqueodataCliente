@@ -22,7 +22,7 @@ export class EditarUsuarioComponent implements OnInit {
     this.cargarUsuario();
   }
 
-  //carga todos los usuarios
+  // Carga todos los usuarios
   cargarUsuario():void{
     this.activateRoute.params.subscribe(params => {
       let id = params['id'];
@@ -34,7 +34,7 @@ export class EditarUsuarioComponent implements OnInit {
     })
   }
 
-  //edita usuario
+  // Edita usuario
   update():void{
     this.usuarioService.update(this.usuario).subscribe(
       usuario => {

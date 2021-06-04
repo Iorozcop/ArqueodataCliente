@@ -21,6 +21,7 @@ export class CampainComponent implements OnInit {
   entidad: string='piezas/campains';
   
   ngOnInit(): void {
+    // Trae todas las campañas 
     this.activatedRoute.paramMap.subscribe(params=>{
       let page:number = +params.get('page');
       
@@ -36,6 +37,7 @@ export class CampainComponent implements OnInit {
     })
   }
 
+  // Elimina campaña
   delete(campain:Campain):void{
     Swal.fire({
       title: '¿Estas seguro?',

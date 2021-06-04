@@ -38,6 +38,7 @@ export class UsuarioComponent implements OnInit {
     
   }
 
+  // Elimina usuario
   delete(usuario:Usuario):void{
     Swal.fire({
       title: '¿Estas seguro?',
@@ -55,13 +56,12 @@ export class UsuarioComponent implements OnInit {
           response => {
             this.usuariosList = this.usuariosList.filter(user => user !== usuario)
             Swal.fire(
-            '¡Eliminado!',
-            'El usuario ha sido eliminado',
-            'success'
-        )
+              '¡Eliminado!',
+              'El usuario ha sido eliminado',
+              'success'
+            )
           }
         )
-        
       }
     })
   }

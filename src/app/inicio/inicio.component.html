@@ -2,11 +2,11 @@
 <app-header></app-header>
 
 <!--contenido inicio-->
-<main class="fondo">
+<main class="fund">
     <div class="general jumbotron jumbotron-fluid">
         <div class="container_inicio">
             <figure>
-                <img class="img_header" src="../../assets/img/piezas2.png" alt="logo arqueodata">
+                <img class="img_header" src="./assets/img/piezas2.png" alt="logo arqueodata">
             </figure>
             <hr />
             <div *ngIf="authService.hasRole('ROLE_ADMIN')" class class="container_text_general">
@@ -30,7 +30,7 @@
                 </p>
                 <!--logo-->
                 <figure class="container_logo">
-                    <img class="img_logo" src="../../assets/img/logoAlargado.png" alt="ilustración de piezas">
+                    <img class="img_logo" src="./assets/img/logoAlargado.png" alt="ilustración de piezas">
                 </figure>
             </div>
             <div *ngIf="authService.hasRole('ROLE_USER') && !authService.hasRole('ROLE_ADMIN')" class class="container_text_general">
@@ -51,7 +51,7 @@
                 </p>
                 <!--logo-->
                 <figure class="container_logo">
-                    <img class="img_logo" src="../../assets/img/logoAlargado.png" alt="ilustración de piezas">
+                    <img class="img_logo" src="./assets/img/logoAlargado.png" alt="ilustración de piezas">
                 </figure>
             </div>
         </div>

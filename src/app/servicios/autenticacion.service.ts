@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../usuario/usuario';
+import { URL_BACK } from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -14,19 +15,18 @@ export class AutenticacionService {
 
   constructor(private http: HttpClient) { }
 
-  // OBTIENE USUARIO ACTUAL
+  // Obtiene usuario actual
   public get usuario(): Usuario{
     if(this._usuario != null){
       return this._usuario;
     }else if(this._usuario == null && sessionStorage.getItem('usuario') != null){
-      //lo convierte a objeto
       this._usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}') as Usuario;
       return this._usuario;
     }
     return new Usuario();
   }
 
-  // OBTIENE TOKEN ACTUAL
+  // Obtiene token actual
   public get token(){
     if(this._token != ''){
       return this._token;
@@ -37,9 +37,9 @@ export class AutenticacionService {
     return null;
   }
 
-  // LOGIN
+  // Login
   login(usuario:Usuario):Observable<any>{
-    const urlEndpoint = 'http://localhost:8449/oauth/token';
+    const urlEndpoint = URL_BACK + '/oauth/token';
     const credenciales = btoa('angularapp' + ':' + '12345');
     const httpHeaders =  new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded', 
     'Authorization': 'Basic ' + credenciales});
@@ -52,33 +52,31 @@ export class AutenticacionService {
     return this.http.post<any>(urlEndpoint, params.toString(), {headers:httpHeaders});
   }
 
-  // GUARDA EL USUARIO LOGUEADO EN EL STORAGE
+  // Guarda el usuario logueado en el storage
   guardarUsuario(accessToken: string):void{
     let payload = this.obtenerDatosToken(accessToken);
     this._usuario = new Usuario();
     this._usuario.username = payload.user_name;
     this._usuario.email = payload.email;
     this._usuario.roles = payload.authorities;
-    //stringify convierte objeto json a string
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
   }
 
-  // GUARDA EL TOKEN DEL USUARIO EN EL STORAGE
+  // Guarda el token del usuario en el storage
   guardarToken(accessToken: string):void{
     this._token = accessToken;
     sessionStorage.setItem('token', accessToken);
   }
 
-  // OBTIENE DATOS DEL USUARIO A TRAVÉS DEL TOKEN
+  // Obtiene datos del usuario a través del token
   obtenerDatosToken(accessToken: any):any{
     if(accessToken != ''){
-      //saca mediante un split los datos y luego lo parsea a JSON
       return JSON.parse(atob(accessToken.split(".")[1]))
     }
     return null;
   }
 
-  // COMPRUEBA SI ESTÁ AUTENTICADO
+  // Comprueba si está autenticado
   isAuthenticated(): boolean{
     let payload = this.obtenerDatosToken(this.token)
 
@@ -87,7 +85,7 @@ export class AutenticacionService {
     }return false;
   }
 
-  // COMPRUEBA SI TIENE UN ROL DETERMINADO
+  // Comprueba si tiene un rol determinado
   hasRole(role:string): boolean{
     if(this.usuario.roles.includes(role)){
       return true;
@@ -95,7 +93,7 @@ export class AutenticacionService {
     return false;
   }
 
-  // CIERRA SESIÓN
+  // Cierra sesión
   logout(){
     this._token = '';
     this._usuario = new Usuario;

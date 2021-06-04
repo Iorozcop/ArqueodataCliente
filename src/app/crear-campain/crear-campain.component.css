@@ -40,10 +40,6 @@
     box-shadow: none !important;
 }
 
-input:required {
-    outline: 1px solid tomato;
-}
-
 .button_container{
     display: flex;
     justify-content: space-between;
@@ -59,7 +55,7 @@ input:required {
 
 @media (max-width: 360px){
     .general_container{
-        padding: 20px;
+        padding: 10px;
     }
 
     .container_card{

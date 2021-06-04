@@ -37,6 +37,7 @@ export class YacimientoComponent implements OnInit {
     })
   }
 
+  // Elimina yacimiento
   delete(yacimiento:Yacimiento):void{
     Swal.fire({
       title: '¿Estas seguro?',
@@ -54,13 +55,12 @@ export class YacimientoComponent implements OnInit {
           response => {
             this.yacimientos = this.yacimientos.filter(yac => yac !== yacimiento)
             Swal.fire(
-            '¡Eliminado!',
-            'El yacimiento ha sido eliminado',
-            'success'
+              '¡Eliminado!',
+              'El yacimiento ha sido eliminado',
+              'success'
             )
           }
         )
-        
       }
     })
   }

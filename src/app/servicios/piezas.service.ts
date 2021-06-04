@@ -5,16 +5,18 @@ import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { URL_BACK } from 'src/config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PiezasService {
-  private urlEndPoint:string = 'http://localhost:8449/api/piezas';
+  private urlEndPoint:string = URL_BACK + '/api/piezas';
 
   constructor(private http:HttpClient,
     private router: Router) { }
 
+  // Trae pieza según id
   getPieza(id: number): Observable<Pieza> {
     return this.http.get<Pieza>(`${this.urlEndPoint}/${id}`).pipe(
       catchError(e => {
@@ -30,18 +32,17 @@ export class PiezasService {
     );
   }
 
-
-  //trae todas las piezas registradas con paginación
+  // Trae todas las piezas registradas con paginación
   getPiezasP(page:number): Observable<any> {
     return this.http.get<any>(this.urlEndPoint + '/page/' + page);
   }
 
-   //trae todas las piezas registradas
+  // Trae todas las piezas registradas
   getPiezas(): Observable<Pieza[]> {
     return this.http.get<Pieza[]>(this.urlEndPoint);
   }
 
-  //crea una nueva pieza
+  // Crea una nueva pieza
   create(pieza:Pieza) :Observable<any>{
     return this.http.post<any>(this.urlEndPoint, pieza).pipe(
       catchError(e => {
@@ -60,30 +61,30 @@ export class PiezasService {
     )
   }
 
-    //edita una pieza
-    update(pieza: Pieza) :Observable<any>{
-      return this.http.put<any>(`${this.urlEndPoint}/${pieza.id}`, pieza).pipe(
-        catchError(e => {
-          if(e.status == 400){
-            return throwError(e);
-          }
-          console.log(e.error.mensaje);
-          Swal.fire({
-            icon: 'error',
-            title: e.error.mensaje,
-            text: 'Algo salió mal'
-          })
+  // Edita una pieza
+  update(pieza: Pieza) :Observable<any>{
+    return this.http.put<any>(`${this.urlEndPoint}/${pieza.id}`, pieza).pipe(
+      catchError(e => {
+        if(e.status == 400){
           return throwError(e);
+        }
+        console.log(e.error.mensaje);
+        Swal.fire({
+          icon: 'error',
+          title: e.error.mensaje,
+          text: 'Algo salió mal'
         })
-      )
-    }
-
-   //elimina una campaña
-    delete(id:number):Observable<Pieza>{
-    return this.http.delete<Pieza>(`${this.urlEndPoint}/${id}`)
+        return throwError(e);
+      })
+    )
   }
 
-  //sube una imagen
+  // Elimina una campaña
+  delete(id:number):Observable<Pieza>{
+  return this.http.delete<Pieza>(`${this.urlEndPoint}/${id}`)
+  }
+
+  // Sube una imagen
   subirFoto(archivo: File, id: any): Observable<Pieza> {
     let formData = new FormData();
     formData.append("archivo", archivo);
@@ -103,7 +104,7 @@ export class PiezasService {
     )
   }
 
-  //busca piezas
+  // Busca piezas
   buscaPiezas(pieza: Pieza): Observable<any[]>{
     return this.http.post<any[]>(`${this.urlEndPoint}/search`,pieza).pipe(
       catchError(e => {
