@@ -16,12 +16,7 @@
     text-align: center;
 }
 
-h1{
-    margin-bottom: 10px;
-}
-
-.logo{
+.img_not_found{
     opacity: 70%;
     width: 100%;
-    padding: 10px;
 }
